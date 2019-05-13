@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.springmvc.mapper.ImageSpaceImgMapper">
+
+	<resultMap id="BaseResultMap" type="com.springmvc.po.ImageSpaceImg">
+		<id column="id" property="id"   />
+		<result column="user_id" property="userId"   />
+		<result column="type" property="type"   />
+		<result column="name" property="name"  />
+		<result column="ext" property="ext"  />
+		<result column="size" property="size"  />
+		<result column="create_time" property="createTime"  />
+		<result column="save_path" property="savePath"  />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id, user_id, type, name, ext, size, create_time, save_path
+	</sql>
+
+
+
+
+
+
+ 
+	<!-- 按条件新增对象 -->
+    <insert id="insert" parameterType="com.springmvc.po.ImageSpaceImg">
+        <selectKey keyProperty="id" resultType="string" order="BEFORE">
+            select replace(uuid(),'-','') from dual
+        </selectKey>
+        insert into image_space_img
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="type != null">
+                type,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="ext != null">
+                ext,
+            </if>
+            <if test="size != null">
+                size,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="savePath != null">
+                save_path,
+            </if>
+        </trim>
+
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id },
+            </if>
+            <if test="userId != null">
+                #{userId },
+            </if>
+            <if test="type != null">
+                #{type },
+            </if>
+            <if test="name != null">
+                #{name },
+            </if>
+            <if test="ext != null">
+                #{ext },
+            </if>
+            <if test="size != null">
+                #{size },
+            </if>
+            <if test="createTime != null">
+                #{createTime },
+            </if>
+            <if test="savePath != null">
+                #{savePath },
+            </if>
+        </trim>
+    </insert>
+
+    <insert id="insertSelective" keyProperty="id" useGeneratedKeys="true" parameterType="com.springmvc.po.ImageSpaceImg">
+        <selectKey keyProperty="id" resultType="string" order="BEFORE">
+            select replace(uuid(),'-','') from dual
+        </selectKey>
+        insert into image_space_img
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="type != null">
+                type,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="ext != null">
+                ext,
+            </if>
+            <if test="size != null">
+                size,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="savePath != null">
+                save_path,
+            </if>
+        </trim>
+
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id },
+            </if>
+            <if test="userId != null">
+                #{userId },
+            </if>
+            <if test="type != null">
+                #{type },
+            </if>
+            <if test="name != null">
+                #{name },
+            </if>
+            <if test="ext != null">
+                #{ext },
+            </if>
+            <if test="size != null">
+                #{size },
+            </if>
+            <if test="createTime != null">
+                #{createTime },
+            </if>
+            <if test="savePath != null">
+                #{savePath },
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 根据编号删除 -->
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from image_space_img  where  id  =#{id}
+    </delete>
+
+    <!-- 按条件更新对象 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.springmvc.po.ImageSpaceImg">
+        update image_space_img
+        <set>
+            <if test="id != null">
+                id = #{id},
+            </if>
+            <if test="userId != null">
+                user_id = #{userId},
+            </if>
+            <if test="type != null">
+                type = #{type},
+            </if>
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="ext != null">
+                ext = #{ext},
+            </if>
+            <if test="size != null">
+                size = #{size},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="savePath != null">
+                save_path = #{savePath},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!-- 分页查询 -->
+    <select id="selectImageSpaceImgByPage" resultMap="BaseResultMap">
+        select
+          *
+        from image_space_img
+        where
+         1=1
+            <if test="imageSpaceimg.id != null and imageSpaceimg.id != '' ">
+                and id = #{imageSpaceimg.id}
+            </if>
+            <if test="imageSpaceimg.userId != null and imageSpaceimg.userId != '' ">
+                and user_id = #{imageSpaceimg.userId}
+            </if>
+            <if test="imageSpaceimg.type != null and imageSpaceimg.type != '' ">
+                and type = #{imageSpaceimg.type}
+            </if>
+            <if test="imageSpaceimg.name != null and imageSpaceimg.name != '' ">
+                and name = #{imageSpaceimg.name}
+            </if>
+            <if test="imageSpaceimg.ext != null and imageSpaceimg.ext != '' ">
+                and ext = #{imageSpaceimg.ext}
+            </if>
+            <if test="imageSpaceimg.size != null and imageSpaceimg.size != '' ">
+                and size = #{imageSpaceimg.size}
+            </if>
+            <if test="imageSpaceimg.createTime != null and imageSpaceimg.createTime != '' ">
+                and create_time = #{imageSpaceimg.createTime}
+            </if>
+            <if test="imageSpaceimg.savePath != null and imageSpaceimg.savePath != '' ">
+                and save_path = #{imageSpaceimg.savePath}
+            </if>
+    </select>
+
+    <!-- 查看用户详情 -->
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap">
+        select
+            <include refid="Base_Column_List" />
+        from image_space_img
+        where id = #{id}
+    </select>
+
+</mapper>

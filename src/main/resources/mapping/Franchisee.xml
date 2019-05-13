@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.springmvc.mapper.FranchiseeMapper">
+
+	<resultMap id="BaseResultMap" type="com.springmvc.po.Franchisee">
+		<id column="id" property="id"   />
+		<result column="title" property="title"  />
+		<result column="characters" property="characters"  />
+		<result column="Identity" property="identity"  />
+		<result column="details" property="details"  />
+		<result column="description" property="description"  />
+		<result column="image" property="image"  />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id, title, characters, Identity, details,description,image
+	</sql>
+
+
+
+
+
+
+ 
+	<!-- 按条件新增对象 -->
+    <insert id="insert" parameterType="com.springmvc.po.Franchisee">
+        insert into franchisee
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="title != null">
+                title,
+            </if>
+            <if test="characters != null">
+                characters,
+            </if>
+            <if test="identity != null">
+                Identity,
+            </if>
+            <if test="details != null">
+                details,
+            </if>
+            <if test="description != null">
+                description,
+            </if>
+            <if test="image != null">
+                image,
+            </if>
+        </trim>
+
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id },
+            </if>
+            <if test="title != null">
+                #{title },
+            </if>
+            <if test="characters != null">
+                #{characters },
+            </if>
+            <if test="identity != null">
+                #{identity },
+            </if>
+            <if test="details != null">
+                #{details },
+            </if>
+            <if test="description != null">
+                #{description },
+            </if>
+            <if test="image != null">
+                #{image },
+            </if>
+        </trim>
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.springmvc.po.Franchisee">
+        insert into franchisee
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="title != null">
+                title,
+            </if>
+            <if test="characters != null">
+                characters,
+            </if>
+            <if test="identity != null">
+                Identity,
+            </if>
+            <if test="details != null">
+                details,
+            </if>
+        </trim>
+
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id },
+            </if>
+            <if test="title != null">
+                #{title },
+            </if>
+            <if test="characters != null">
+                #{characters },
+            </if>
+            <if test="identity != null">
+                #{identity },
+            </if>
+            <if test="details != null">
+                #{details },
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 根据编号删除 -->
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from franchisee  where  id  =#{id}
+    </delete>
+
+    <!-- 按条件更新对象 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.springmvc.po.Franchisee">
+        update franchisee
+        <set>
+            <if test="id != null">
+                id = #{id},
+            </if>
+            <if test="title != null">
+                title = #{title},
+            </if>
+            <if test="characters != null">
+                characters = #{characters},
+            </if>
+            <if test="identity != null">
+                Identity = #{identity},
+            </if>
+            <if test="details != null">
+                details = #{details},
+            </if>
+            <if test="description != null">
+                description = #{description},
+            </if>
+            <if test="image != null">
+                image = #{image},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!-- 分页查询 -->
+    <select id="selectFranchiseeByPage" resultMap="BaseResultMap">
+        select
+          *
+        from franchisee
+        where
+         1=1
+            <if test="franchisee.id != null and franchisee.id != '' ">
+                and id = #{franchisee.id}
+            </if>
+            <if test="franchisee.title != null and franchisee.title != '' ">
+                and title = #{franchisee.title}
+            </if>
+            <if test="franchisee.characters != null and franchisee.characters != '' ">
+                and characters = #{franchisee.characters}
+            </if>
+            <if test="franchisee.identity != null and franchisee.identity != '' ">
+                and Identity = #{franchisee.identity}
+            </if>
+            <if test="franchisee.details != null and franchisee.details != '' ">
+                and details = #{franchisee.details}
+            </if>
+    </select>
+
+    <!-- 查看用户详情 -->
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap">
+        select
+            <include refid="Base_Column_List" />
+        from franchisee
+        where id = #{id}
+    </select>
+ 
+</mapper>

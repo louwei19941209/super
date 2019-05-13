@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<taglib xmlns="http://java.sun.com/xml/ns/javaee"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd"
+        version="2.1">
+
+    <tlib-version>1.0</tlib-version>
+    <short-name>myshortname</short-name>
+    <uri>http://mycompany.com</uri>
+
+    <!--根据用户id，获取用户名称-->
+    <tag>
+        <name>userName</name> <!-- 自定义的标签名字 -->
+        <tag-class>com.springmvc.commons.tag.SyUserNameTag</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>id</name> <!-- 属性名字 -->
+            <required>true</required> <!-- 是否必选 -->
+            <rtexprvalue>true</rtexprvalue> <!--是否支持 el 表达式 -->
+        </attribute>
+    </tag>
+
+    <!--获取登陆用户信息-->
+    <tag>
+        <name>loginTrueName</name>
+        <tag-class>com.springmvc.commons.tag.LoginUserInfoTag</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>type</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+
+    <!--根据部门id获取部门名称-->
+    <tag>
+        <name>outDeptName</name>
+        <tag-class>com.springmvc.commons.tag.SyDeptNameTag</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>id</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+
+    <!--验证当前用户是否为开发人员-->
+    <tag>
+        <name>isDeveloper</name>
+        <tag-class>com.springmvc.commons.tag.IsDeveloperTag</tag-class>
+        <body-content>JSP</body-content>
+    </tag>
+
+    <!--script标签转换-->
+    <tag>
+        <name>scriptEscape</name>
+        <tag-class>com.springmvc.commons.tag.ScriptEscapeTag</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>value</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+
+    <!--根据字典值类型，以下拉列表方式输出字典值-->
+    <tag>
+        <name>outOptions</name>
+        <tag-class>com.springmvc.commons.tag.OutSelectOptionTag</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>type</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+</taglib>

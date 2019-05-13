@@ -1,0 +1,127 @@
+<html>
+    <head>
+        <script type="text/javascript" src="igame.js"></script>
+        <script type="text/javascript" src="property.js"></script>
+        <script type="text/javascript" src="expression.js"></script>
+        <script type="text/javascript" src="operand.js"></script>
+        <script type="text/javascript" src="operandBase.js"></script>
+        <script type="text/javascript" src="operandBoolean.js"></script>
+        <script type="text/javascript" src="operandNumber.js"></script>
+        <script type="text/javascript" src="operandString.js"></script>
+        
+        <script type="text/javascript" src="Operator.js"></script>
+        <script type="text/javascript" src="OperatorBase.js"></script>
+        <script type="text/javascript" src="OperatorParentheses.js"></script>
+        <script type="text/javascript" src="BinaryOperator.js"></script>
+
+        <script type="text/javascript" src="OperatorAdd.js"></script>
+        <script type="text/javascript" src="OperatorSub.js"></script>
+        <script type="text/javascript" src="OperatorMul.js"></script>
+        <script type="text/javascript" src="OperatorDiv.js"></script>
+        <script type="text/javascript" src="OperatorMod.js"></script>
+        <script type="text/javascript" src="OperatorShiftLeft.js"></script>
+        <script type="text/javascript" src="OperatorShiftRight.js"></script>
+
+        <script type="text/javascript" src="OperatorBitwiseAnd.js"></script>
+        <script type="text/javascript" src="OperatorBitwiseOr.js"></script>
+        <script type="text/javascript" src="OperatorAnd.js"></script>
+        <script type="text/javascript" src="OperatorGreater.js"></script>
+        <script type="text/javascript" src="OperatorGreaterEqual.js"></script>
+        <script type="text/javascript" src="OperatorLess.js"></script>
+        <script type="text/javascript" src="OperatorLessEqual.js"></script>
+        <script type="text/javascript" src="OperatorOr.js"></script>
+        <script type="text/javascript" src="OperatorXor.js"></script>
+
+        <script type="text/javascript" src="UnaryOperator.js"></script>
+        <script type="text/javascript" src="OperatorMinus.js"></script>
+        <script type="text/javascript" src="OperatorPlus.js"></script>
+        <script type="text/javascript" src="OperatorNot.js"></script>
+        <script type="text/javascript" src="OperatorBitwiseNot.js"></script>
+        <script type="text/javascript" src="Function.js"></script>
+        <script type="text/javascript" src="FunctionBase.js"></script>
+        <script type="text/javascript" src="FunctionAverage.js"></script>
+        <script type="text/javascript" src="FunctionSum.js"></script>
+        <script type="text/javascript" src="FunctionPower.js"></script>
+
+        <script type="text/javascript" src="Formula.js"></script>
+    </head>
+    <body>
+        <textarea id="TA_Log" cols="80" rows="40"></textarea>
+        <input type="button" id="btn_test" value="test"/>
+        <script type="text/javascript">
+            function log( msg )
+            {
+                TA_Log.value += msg + '\n';
+            }
+
+            function testFormula( logFunc )
+            {
+                var state = [
+                    '=0',
+                    '=0+0',
+                    '=0.0',
+                    '=0.1',
+                    '=0+1',
+                    '=1+1',
+                    '=0.1+1',
+                    '=1+2+3',
+                    '=1+2*3',
+                    '=1+2/3',
+                    '=1 > 2',
+                    '=1 < 2',
+                    '=1 >= 2',
+                    '=1 <= 2',
+                    '=3 > 2 + 1',
+                    '=3 < 2 + 1',
+                    '= 3 >= 2 + 1',
+                    '= 3 <= 2 + 1',
+                    '=1 >> 2',
+                    '=1 << 2',
+                    '=1 & 2',
+                    '=2 & 1',
+                    '=!1',
+                    '=+1+-2',
+                    '=(1) + ((2))',
+                    '=true',
+                    '=false',
+                    '=3 % 5',
+                    '=~1',
+                    '=1^2',
+                    '=Sum(1, 2, 3)',
+                    '=power(2, 4)',
+                    '=average(1, 2, 3, 4, 5, 6)',
+                    '=1 + Sum(2, 3) + Power(2, 0)',
+                    '=1 + -Sum(2, Power(2, 3))',
+                    '=1 + Sum(2, Power(2, (3 + -1)))',
+                ];
+
+                var exp = igame.Expression;
+
+                for ( var i = 0; i < state.length; i++ )
+                {
+                    if ( state[i] )
+                    {
+                        var fm = new exp.Formula( state[i] );
+
+                        try
+                        {
+                            var val = fm.evaluate();
+
+                            logFunc( state[i] + '\t\t==>\t\t' + val.toString() );
+                        }
+                        catch ( e )
+                        {
+                            logFunc( state[i] + ':' + e.description );
+                        }
+                    }
+                }
+
+            }
+                        
+            btn_test.onclick = function()
+            {
+                testFormula( log );
+            }
+        </script>
+    </body>
+</html>

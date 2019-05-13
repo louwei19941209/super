@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.springmvc.mapper.LeagueMapper">
+
+	<resultMap id="BaseResultMap" type="com.springmvc.po.League">
+		<id column="id" property="id"   />
+		<result column="name" property="name"  />
+		<result column="sex" property="sex"  />
+		<result column="phone" property="phone"  />
+		<result column="pro" property="pro"  />
+		<result column="city" property="city"  />
+		<result column="area" property="area"  />
+		<result column="address" property="address"  />
+		<result column="message" property="message"  />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id, name, sex, phone, pro, city, area, address, message
+	</sql>
+
+
+
+
+
+
+ 
+	<!-- 按条件新增对象 -->
+    <insert id="insert" parameterType="com.springmvc.po.League">
+        insert into league
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="sex != null">
+                sex,
+            </if>
+            <if test="phone != null">
+                phone,
+            </if>
+            <if test="pro != null">
+                pro,
+            </if>
+            <if test="city != null">
+                city,
+            </if>
+            <if test="area != null">
+                area,
+            </if>
+            <if test="address != null">
+                address,
+            </if>
+            <if test="message != null">
+                message,
+            </if>
+        </trim>
+
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id },
+            </if>
+            <if test="name != null">
+                #{name },
+            </if>
+            <if test="sex != null">
+                #{sex },
+            </if>
+            <if test="phone != null">
+                #{phone },
+            </if>
+            <if test="pro != null">
+                #{pro },
+            </if>
+            <if test="city != null">
+                #{city },
+            </if>
+            <if test="area != null">
+                #{area },
+            </if>
+            <if test="address != null">
+                #{address },
+            </if>
+            <if test="message != null">
+                #{message },
+            </if>
+        </trim>
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.springmvc.po.League">
+        insert into league
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="sex != null">
+                sex,
+            </if>
+            <if test="phone != null">
+                phone,
+            </if>
+            <if test="pro != null">
+                pro,
+            </if>
+            <if test="city != null">
+                city,
+            </if>
+            <if test="area != null">
+                area,
+            </if>
+            <if test="address != null">
+                address,
+            </if>
+            <if test="message != null">
+                message,
+            </if>
+        </trim>
+
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id },
+            </if>
+            <if test="name != null">
+                #{name },
+            </if>
+            <if test="sex != null">
+                #{sex },
+            </if>
+            <if test="phone != null">
+                #{phone },
+            </if>
+            <if test="pro != null">
+                #{pro },
+            </if>
+            <if test="city != null">
+                #{city },
+            </if>
+            <if test="area != null">
+                #{area },
+            </if>
+            <if test="address != null">
+                #{address },
+            </if>
+            <if test="message != null">
+                #{message },
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 根据编号删除 -->
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from league  where  id  =#{id}
+    </delete>
+
+    <!-- 按条件更新对象 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.springmvc.po.League">
+        update league
+        <set>
+            <if test="id != null">
+                id = #{id},
+            </if>
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="sex != null">
+                sex = #{sex},
+            </if>
+            <if test="phone != null">
+                phone = #{phone},
+            </if>
+            <if test="pro != null">
+                pro = #{pro},
+            </if>
+            <if test="city != null">
+                city = #{city},
+            </if>
+            <if test="area != null">
+                area = #{area},
+            </if>
+            <if test="address != null">
+                address = #{address},
+            </if>
+            <if test="message != null">
+                message = #{message},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!-- 分页查询 -->
+    <select id="selectLeagueByPage" resultMap="BaseResultMap">
+        select
+          *
+        from league
+        where
+         1=1
+            <if test="league.id != null and league.id != '' ">
+                and id = #{league.id}
+            </if>
+            <if test="league.name != null and league.name != '' ">
+                and name = #{league.name}
+            </if>
+            <if test="league.sex != null and league.sex != '' ">
+                and sex = #{league.sex}
+            </if>
+            <if test="league.phone != null and league.phone != '' ">
+                and phone = #{league.phone}
+            </if>
+            <if test="league.pro != null and league.pro != '' ">
+                and pro = #{league.pro}
+            </if>
+            <if test="league.city != null and league.city != '' ">
+                and city = #{league.city}
+            </if>
+            <if test="league.area != null and league.area != '' ">
+                and area = #{league.area}
+            </if>
+            <if test="league.address != null and league.address != '' ">
+                and address = #{league.address}
+            </if>
+            <if test="league.message != null and league.message != '' ">
+                and message = #{league.message}
+            </if>
+    </select>
+
+    <!-- 查看用户详情 -->
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap">
+        select
+            <include refid="Base_Column_List" />
+        from league
+        where id = #{id}
+    </select>
+
+    <select id="selectCity" resultType="java.util.Map">
+        select * from sy_district where super_id = #{id}
+    </select>
+
+</mapper>

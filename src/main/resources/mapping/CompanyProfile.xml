@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.springmvc.mapper.CompanyProfileMapper">
+
+	<resultMap id="BaseResultMap" type="com.springmvc.po.CompanyProfile">
+		<id column="id" property="id"   />
+		<result column="introduction" property="introduction"  />
+		<result column="established" property="established"  />
+		<result column="image" property="image"  />
+		<result column="name" property="name"  />
+		<result column="status" property="status"  />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id, name, introduction, established, image,status
+	</sql>
+
+
+
+
+
+
+ 
+	<!-- 按条件新增对象 -->
+    <insert id="insert" parameterType="com.springmvc.po.CompanyProfile">
+        insert into company_profile
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="introduction != null">
+                introduction,
+            </if>
+            <if test="established != null">
+                established,
+            </if>
+            <if test="image != null">
+                image,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+        </trim>
+
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id },
+            </if>
+            <if test="introduction != null">
+                #{introduction },
+            </if>
+            <if test="established != null">
+                #{established },
+            </if>
+            <if test="image != null">
+                #{image },
+            </if>
+            <if test="name != null">
+                #{name},
+            </if>
+            <if test="status != null">
+                #{status},
+            </if>
+        </trim>
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.springmvc.po.CompanyProfile">
+        insert into company_profile
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="introduction != null">
+                introduction,
+            </if>
+            <if test="established != null">
+                established,
+            </if>
+            <if test="image != null">
+                image,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+        </trim>
+
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id },
+            </if>
+            <if test="introduction != null">
+                #{introduction },
+            </if>
+            <if test="established != null">
+                #{established },
+            </if>
+            <if test="image != null">
+                #{image },
+            </if>
+            <if test="name != null">
+                #{name},
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 根据编号删除 -->
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from company_profile  where  id  =#{id}
+    </delete>
+
+    <!-- 按条件更新对象 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.springmvc.po.CompanyProfile">
+        update company_profile
+        <set>
+            <if test="id != null">
+                id = #{id},
+            </if>
+            <if test="introduction != null">
+                introduction = #{introduction},
+            </if>
+            <if test="established != null">
+                established = #{established},
+            </if>
+            <if test="image != null">
+                image = #{image},
+            </if>
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!-- 分页查询 -->
+    <select id="selectCompanyProfileByPage" resultMap="BaseResultMap">
+        select
+          *
+        from company_profile
+        where
+         1=1
+            <if test="companyProfile.id != null and companyProfile.id != '' ">
+                and id = #{companyProfile.id}
+            </if>
+            <if test="companyProfile.introduction != null and companyProfile.introduction != '' ">
+                and introduction = #{companyProfile.introduction}
+            </if>
+            <if test="companyProfile.established != null and companyProfile.established != '' ">
+                and established = #{companyProfile.established}
+            </if>
+            <if test="companyProfile.image != null and companyProfile.image != '' ">
+                and image = #{companyProfile.image}
+            </if>
+            <if test="companyProfile.name != null and companyProfile.name != '' ">
+                and name like '%' #{companyProfile.name} '%'
+            </if>
+    </select>
+
+    <!-- 查看用户详情 -->
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap">
+        select
+            <include refid="Base_Column_List" />
+        from company_profile
+        where
+        1=1
+        <if test="companyProfile.id != null and companyProfile.id != '' ">
+            and id = #{companyProfile.id}
+        </if>
+        <if test="companyProfile.introduction != null and companyProfile.introduction != '' ">
+            and introduction = #{companyProfile.introduction}
+        </if>
+        <if test="companyProfile.established != null and companyProfile.established != '' ">
+            and established = #{companyProfile.established}
+        </if>
+        <if test="companyProfile.image != null and companyProfile.image != '' ">
+            and image = #{companyProfile.image}
+        </if>
+        <if test="companyProfile.name != null and companyProfile.name != '' ">
+            and name like '%' #{companyProfile.name} '%'
+        </if>
+        <if test="companyProfile.status != null and companyProfile.status != '' ">
+            and status = #{companyProfile.status}
+        </if>
+    </select>
+ 
+</mapper>

@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.springmvc.mapper.SyUsersMapper" >
+  <resultMap id="BaseResultMap" type="com.springmvc.po.SyUsers" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="true_name" property="trueName" jdbcType="VARCHAR" />
+    <result column="user_password" property="userPassword" jdbcType="CHAR" />
+    <result column="register_time" property="registerTime" jdbcType="TIMESTAMP" />
+    <result column="last_login_time" property="lastLoginTime" jdbcType="TIMESTAMP" />
+    <result column="last_login_ip" property="lastLoginIp" jdbcType="VARCHAR" />
+    <result column="error_time" property="errorTime" jdbcType="TIMESTAMP" />
+    <result column="error_count" property="errorCount" jdbcType="INTEGER" />
+    <result column="user_status" property="userStatus" jdbcType="SMALLINT" />
+    <result column="dept_id" property="deptId" jdbcType="CHAR" />
+    <result column="user_desc" property="userDesc" jdbcType="VARCHAR" />
+    <result column="user_sex" property="userSex" jdbcType="BIT" />
+    <result column="register_uid" property="registerUid" jdbcType="CHAR" />
+    <result column="mobile_phone_number" property="mobilePhoneNumber" jdbcType="CHAR" />
+    <result column="regions" property="regions" jdbcType="CHAR" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_name, true_name, user_password, register_time, last_login_time, last_login_ip, 
+    error_time, error_count, user_status, dept_id, user_desc, user_sex, register_uid, 
+    mobile_phone_number, regions, type
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from sy_users
+    where id = #{id,jdbcType=CHAR}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from sy_users
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+
+  <insert id="insert" parameterType="com.springmvc.po.SyUsers" >
+    <selectKey keyProperty="id" resultType="string" order="BEFORE">
+      select replace(uuid(),'-','') from dual
+    </selectKey>
+    insert into sy_users (id, user_name, true_name, 
+      user_password, register_time, last_login_time, 
+      last_login_ip, error_time, error_count, 
+      user_status, dept_id, user_desc, 
+      user_sex, register_uid, mobile_phone_number, 
+      regions, type)
+    values (#{id,jdbcType=CHAR}, #{userName,jdbcType=VARCHAR}, #{trueName,jdbcType=VARCHAR}, 
+      #{userPassword,jdbcType=CHAR}, #{registerTime,jdbcType=TIMESTAMP}, #{lastLoginTime,jdbcType=TIMESTAMP}, 
+      #{lastLoginIp,jdbcType=VARCHAR}, #{errorTime,jdbcType=TIMESTAMP}, #{errorCount,jdbcType=INTEGER}, 
+      #{userStatus,jdbcType=BIT}, #{deptId,jdbcType=CHAR}, #{userDesc,jdbcType=VARCHAR}, 
+      #{userSex,jdbcType=BIT}, #{registerUid,jdbcType=CHAR}, #{mobilePhoneNumber,jdbcType=CHAR}, 
+      #{regions,jdbcType=CHAR}, #{type,jdbcType=INTEGER})
+  </insert>
+
+  <insert id="insertSelective" parameterType="com.springmvc.po.SyUsers" >
+    insert into sy_users
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="trueName != null" >
+        true_name,
+      </if>
+      <if test="userPassword != null" >
+        user_password,
+      </if>
+      <if test="registerTime != null" >
+        register_time,
+      </if>
+      <if test="lastLoginTime != null" >
+        last_login_time,
+      </if>
+      <if test="lastLoginIp != null" >
+        last_login_ip,
+      </if>
+      <if test="errorTime != null" >
+        error_time,
+      </if>
+      <if test="errorCount != null" >
+        error_count,
+      </if>
+      <if test="userStatus != null" >
+        user_status,
+      </if>
+      <if test="deptId != null" >
+        dept_id,
+      </if>
+      <if test="userDesc != null" >
+        user_desc,
+      </if>
+      <if test="userSex != null" >
+        user_sex,
+      </if>
+      <if test="registerUid != null" >
+        register_uid,
+      </if>
+      <if test="mobilePhoneNumber != null" >
+        mobile_phone_number,
+      </if>
+      <if test="regions != null" >
+        regions,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="trueName != null" >
+        #{trueName,jdbcType=VARCHAR},
+      </if>
+      <if test="userPassword != null" >
+        #{userPassword,jdbcType=CHAR},
+      </if>
+      <if test="registerTime != null" >
+        #{registerTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastLoginTime != null" >
+        #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastLoginIp != null" >
+        #{lastLoginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="errorTime != null" >
+        #{errorTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="errorCount != null" >
+        #{errorCount,jdbcType=INTEGER},
+      </if>
+      <if test="userStatus != null" >
+        #{userStatus,jdbcType=BIT},
+      </if>
+      <if test="deptId != null" >
+        #{deptId,jdbcType=CHAR},
+      </if>
+      <if test="userDesc != null" >
+        #{userDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="userSex != null" >
+        #{userSex,jdbcType=BIT},
+      </if>
+      <if test="registerUid != null" >
+        #{registerUid,jdbcType=CHAR},
+      </if>
+      <if test="mobilePhoneNumber != null" >
+        #{mobilePhoneNumber,jdbcType=CHAR},
+      </if>
+      <if test="regions != null" >
+        #{regions,jdbcType=CHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.springmvc.po.SyUsers" >
+    update sy_users
+    <set >
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="trueName != null" >
+        true_name = #{trueName,jdbcType=VARCHAR},
+      </if>
+      <if test="userPassword != null" >
+        user_password = #{userPassword,jdbcType=CHAR},
+      </if>
+      <if test="registerTime != null" >
+        register_time = #{registerTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastLoginTime != null" >
+        last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastLoginIp != null" >
+        last_login_ip = #{lastLoginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="errorTime != null" >
+        error_time = #{errorTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="errorCount != null" >
+        error_count = #{errorCount,jdbcType=INTEGER},
+      </if>
+      <if test="userStatus != null" >
+        user_status = #{userStatus,jdbcType=BIT},
+      </if>
+      <if test="deptId != null" >
+        dept_id = #{deptId,jdbcType=CHAR},
+      </if>
+      <if test="userDesc != null" >
+        user_desc = #{userDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="userSex != null" >
+        user_sex = #{userSex,jdbcType=BIT},
+      </if>
+      <if test="registerUid != null" >
+        register_uid = #{registerUid,jdbcType=CHAR},
+      </if>
+      <if test="mobilePhoneNumber != null" >
+        mobile_phone_number = #{mobilePhoneNumber,jdbcType=CHAR},
+      </if>
+      <if test="regions != null" >
+        regions = #{regions,jdbcType=CHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+
+  <update id="updateByPrimaryKey" parameterType="com.springmvc.po.SyUsers" >
+    update sy_users
+    set user_name = #{userName,jdbcType=VARCHAR},
+      true_name = #{trueName,jdbcType=VARCHAR},
+      user_password = #{userPassword,jdbcType=CHAR},
+      register_time = #{registerTime,jdbcType=TIMESTAMP},
+      last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
+      last_login_ip = #{lastLoginIp,jdbcType=VARCHAR},
+      error_time = #{errorTime,jdbcType=TIMESTAMP},
+      error_count = #{errorCount,jdbcType=INTEGER},
+      user_status = #{userStatus,jdbcType=BIT},
+      dept_id = #{deptId,jdbcType=CHAR},
+      user_desc = #{userDesc,jdbcType=VARCHAR},
+      user_sex = #{userSex,jdbcType=BIT},
+      register_uid = #{registerUid,jdbcType=CHAR},
+      mobile_phone_number = #{mobilePhoneNumber,jdbcType=CHAR},
+      regions = #{regions,jdbcType=CHAR},
+      type = #{type,jdbcType=INTEGER}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+
+  <select id="selectAllUsers"  resultMap="BaseResultMap">
+    SELECT
+      *
+    FROM
+      sy_users
+    WHERE
+      1=1
+    <if test="user.userName != null and user.userName != '' ">
+      AND user_name = #{user.userName}
+    </if>
+    <if test="user.trueName != null and user.trueName != '' ">
+      AND true_name = #{user.trueName}
+    </if>
+    <if test="user.deptId != null and user.deptId != ''">
+      AND dept_id = #{user.deptId}
+    </if>
+    <if test="user.userSex != null and user.userSex != '' or user.userSex==0 ">
+      AND user_sex = #{user.userSex}
+    </if>
+  </select>
+
+  <select id="queryAllUsers"  resultMap="BaseResultMap">
+    SELECT
+    *
+    FROM
+    sy_users
+    WHERE
+    1=1
+    <if test="user.userName != null and user.userName != '' ">
+      AND user_name = #{user.userName}
+    </if>
+    <if test="user.trueName != null and user.trueName != '' ">
+      AND true_name = #{user.trueName}
+    </if>
+    <if test="user.deptId != null and user.deptId != ''">
+      AND dept_id = #{user.deptId}
+    </if>
+    <if test="user.userSex != null and user.userSex != '' or user.userSex==0 ">
+      AND user_sex = #{user.userSex}
+    </if>
+    <if test="ids != null and ids.size() > 0">
+      AND id NOT IN
+      <foreach item="item" collection="ids" index="index" open="(" separator="," close=")" >
+        #{ids[${index}]}
+      </foreach>
+    </if>
+
+  </select>
+
+  <select id="selectByParameter" parameterType="com.springmvc.po.SyUsers" resultMap="BaseResultMap">
+    select
+      *
+    from
+      sy_users
+    where
+      1=1
+    <if test="userName != null and userName !='' ">
+      and  user_name = #{userName, jdbcType = CHAR}
+    </if>
+   <!-- <if test="userPassword != null and userPassword !='' ">
+      and user_password = #{userPassword, jdbcType = CHAR}
+    </if>-->
+
+  </select>
+
+  <!--用户所有角色-->
+  <select id="selectByUserAllRole" parameterType="java.lang.String"  resultType="java.lang.String">
+    select role_id from sy_user_role where user_id = #{userId, jdbcType = CHAR}
+  </select>
+
+  <!--用户可以访问的url-->
+  <select id="selectByUserAllMenu" parameterType="java.lang.String"  resultType="java.lang.String">
+    select distinct m.menu_url from sy_role_menu rm,sy_menu m where rm.menu_id=m.id and rm.role_id=#{roleId, jdbcType = CHAR}
+  </select>
+
+  <!--用户获取操作url-->
+  <select id="selectByUserAllAction" parameterType="java.lang.String"  resultType="java.lang.String">
+    select distinct a.action_url from sy_action a, sy_role_action ra where a.id = ra.action_id and ra.role_id = #{roleId,jdbcType = CHAR}
+  </select>
+</mapper>

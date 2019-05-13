@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.springmvc.mapper.SyRoleMapper" >
+  <resultMap id="BaseResultMap" type="com.springmvc.po.SyRole" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="role_name" property="roleName" jdbcType="VARCHAR" />
+    <result column="role_desc" property="roleDesc" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, role_name, role_desc
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from sy_role
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from sy_role
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+
+    <insert id="insert" parameterType="com.springmvc.po.SyRole" >
+        <selectKey keyProperty="id" resultType="string" order="BEFORE">
+          select replace(uuid(),'-','') from dual
+        </selectKey>
+        insert into sy_role (id, role_name, role_desc
+          )
+        values (#{id,jdbcType=CHAR}, #{roleName,jdbcType=VARCHAR}, #{roleDesc,jdbcType=VARCHAR}
+          )
+    </insert>
+
+  <insert id="insertSelective" parameterType="com.springmvc.po.SyRole" >
+    insert into sy_role
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="roleName != null" >
+        role_name,
+      </if>
+      <if test="roleDesc != null" >
+        role_desc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="roleName != null" >
+        #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="roleDesc != null" >
+        #{roleDesc,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.springmvc.po.SyRole" >
+    update sy_role
+    <set >
+      <if test="roleName != null" >
+        role_name = #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="roleDesc != null" >
+        role_desc = #{roleDesc,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.springmvc.po.SyRole" >
+    update sy_role
+    set role_name = #{roleName,jdbcType=VARCHAR},
+      role_desc = #{roleDesc,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+
+    <select id="selectAllRole" resultMap="BaseResultMap">
+        SELECT
+          *
+        FROM
+          sy_role
+        WHERE
+          1=1
+        <if test="role.roleName != null and role.roleName != ''">
+          AND role_name = #{role.roleName}
+        </if>
+        <if test="role.roleDesc != null and role.roleDesc != ''">
+          AND role_desc = #{role.roleDesc}
+        </if>
+    </select>
+
+    <select id="selectByParameter" resultMap="BaseResultMap">
+        SELECT
+          *
+        FROM
+          sy_role
+        WHERE
+          1=1
+        <if test="id != null and id != '' ">
+            AND id != #{id}
+        </if>
+        <if test="roleName != null and roleName != '' ">
+            AND role_name = #{roleName}
+        </if>
+    </select>
+
+    <select id="selectRoleUsers" resultType="com.springmvc.po.SyUsers">
+      SELECT
+        ur.id as id,
+        u.user_name as userName,
+        u.true_name as trueName,
+        u.user_status as userStatus,
+        u.user_sex as userSex,
+        u.dept_id as deptId
+      FROM
+        sy_users u,
+        sy_user_role ur
+      WHERE 1=1
+        AND u.id = ur.user_id
+        AND ur.role_id = #{roleId}
+      <if test="user.userName != null and user.userName != ''">
+        AND u.user_name LIKE '%' #{user.userName} '%'
+      </if>
+      <if test="user.trueName != null and user.trueName !=''">
+        AND u.true_name LIKE '%' #{user.trueName} '%'
+      </if>
+      <if test="user.deptId != null and user.deptId != '' ">
+        AND u.dept_id = #{user.deptId}
+      </if>
+      <if test="user.userSex != null and user.userSex != '' or user.userSex ==0 ">
+        AND u.user_sex = #{user.userSex}
+      </if>
+      <if test="user.userStatus != null and user.userStatus != '' ">
+        AND u.user_status = #{user.userStatus}
+      </if>
+    </select>
+
+    <select id="queryRoleUsers" resultType="java.lang.String">
+      SELECT
+        user_id as id
+      FROM
+        sy_user_role
+      WHERE
+        1=1
+      AND role_id = #{roleId}
+    </select>
+
+
+
+</mapper>

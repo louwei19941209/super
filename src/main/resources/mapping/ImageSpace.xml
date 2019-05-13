@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.springmvc.mapper.ImageSpaceMapper">
+
+	<resultMap id="BaseResultMap" type="com.springmvc.po.ImageSpace">
+		<id column="id" property="id"   />
+		<result column="user_id" property="userId"   />
+		<result column="name" property="name"  />
+		<result column="create_time" property="createTime"  />
+		<result column="remark" property="remark"  />
+		<result column="type" property="type"  />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id, user_id, name, create_time, remark, type
+	</sql>
+
+
+
+
+
+
+ 
+	<!-- 按条件新增对象 -->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true" parameterType="com.springmvc.po.ImageSpace">
+        <selectKey keyProperty="id" resultType="string" order="BEFORE">
+            select replace(uuid(),'-','') from dual
+        </selectKey>
+        insert into image_space
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+            <if test="type != null">
+                type,
+            </if>
+        </trim>
+
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id },
+            </if>
+            <if test="userId != null">
+                #{userId },
+            </if>
+            <if test="name != null">
+                #{name },
+            </if>
+            <if test="createTime != null">
+                #{createTime },
+            </if>
+            <if test="remark != null">
+                #{remark },
+            </if>
+            <if test="type != null">
+                #{type },
+            </if>
+        </trim>
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.springmvc.po.ImageSpace">
+        insert into image_space
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+            <if test="type != null">
+                type,
+            </if>
+        </trim>
+
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id },
+            </if>
+            <if test="userId != null">
+                #{userId },
+            </if>
+            <if test="name != null">
+                #{name },
+            </if>
+            <if test="createTime != null">
+                #{createTime },
+            </if>
+            <if test="remark != null">
+                #{remark },
+            </if>
+            <if test="type != null">
+                #{type },
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 根据编号删除 -->
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from image_space  where  id  =#{id}
+    </delete>
+
+    <!-- 按条件更新对象 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.springmvc.po.ImageSpace">
+        update image_space
+        <set>
+            <if test="id != null">
+                id = #{id},
+            </if>
+            <if test="userId != null">
+                user_id = #{userId},
+            </if>
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="remark != null">
+                remark = #{remark},
+            </if>
+            <if test="type != null">
+                type = #{type},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!-- 分页查询 -->
+    <select id="selectImageSpaceByPage" resultMap="BaseResultMap">
+        select
+          *
+        from image_space
+        where
+         1=1
+            <if test="imageSpace.id != null and imageSpace.id != '' ">
+                and id = #{imageSpace.id}
+            </if>
+            <if test="imageSpace.userId != null and imageSpace.userId != '' ">
+                and user_id = #{imageSpace.userId}
+            </if>
+            <if test="imageSpace.name != null and imageSpace.name != '' ">
+                and name = #{imageSpace.name}
+            </if>
+            <if test="imageSpace.createTime != null and imageSpace.createTime != '' ">
+                and create_time = #{imageSpace.createTime}
+            </if>
+            <if test="imageSpace.remark != null and imageSpace.remark != '' ">
+                and remark = #{imageSpace.remark}
+            </if>
+            <if test="imageSpace.type != null and imageSpace.type != '' ">
+                and type = #{imageSpace.type}
+            </if>
+    </select>
+
+    <!-- 查看用户详情 -->
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap">
+        select
+            <include refid="Base_Column_List" />
+        from image_space
+        where id = #{id}
+    </select>
+
+    <!--根据条件查询-->
+    <select id="queryByCondition" resultMap="BaseResultMap">
+        select * from image_space
+          where
+          1=1
+        <if test="userId != null and userId != '' ">
+            and user_id = #{userId}
+        </if>
+        <if test="type != null and type != '' ">
+            and type = #{type}
+        </if>
+
+    </select>
+
+    <select id="queryAllByCondition" resultType="com.springmvc.po.ImageSpace">
+        select * from image_space
+        where
+        1=1
+        <if test="userId != null and userId != '' ">
+            and user_id = #{userId}
+        </if>
+        <if test="type != null and type != '' ">
+            and type = #{type}
+        </if>
+    </select>
+
+</mapper>

@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.springmvc.mapper.HexinMapper">
+
+	<resultMap id="BaseResultMap" type="com.springmvc.po.Hexin">
+		<id column="id" property="id"   />
+		<result column="title" property="title"  />
+		<result column="content" property="content"  />
+		<result column="image" property="image"  />
+		<result column="number" property="number"  />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id, title, content, image, number
+	</sql>
+
+
+
+
+
+
+ 
+	<!-- 按条件新增对象 -->
+    <insert id="insert" parameterType="com.springmvc.po.Hexin">
+        insert into hexin
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="title != null">
+                title,
+            </if>
+            <if test="content != null">
+                content,
+            </if>
+            <if test="image != null">
+                image,
+            </if>
+            <if test="number != null">
+                number,
+            </if>
+        </trim>
+
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id },
+            </if>
+            <if test="title != null">
+                #{title },
+            </if>
+            <if test="content != null">
+                #{content },
+            </if>
+            <if test="image != null">
+                #{image },
+            </if>
+            <if test="number != null">
+                #{number },
+            </if>
+        </trim>
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.springmvc.po.Hexin">
+        insert into hexin
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="title != null">
+                title,
+            </if>
+            <if test="content != null">
+                content,
+            </if>
+            <if test="image != null">
+                image,
+            </if>
+            <if test="number != null">
+                number,
+            </if>
+        </trim>
+
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id },
+            </if>
+            <if test="title != null">
+                #{title },
+            </if>
+            <if test="content != null">
+                #{content },
+            </if>
+            <if test="image != null">
+                #{image },
+            </if>
+            <if test="number != null">
+                #{number },
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 根据编号删除 -->
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from hexin  where  id  =#{id}
+    </delete>
+
+    <!-- 按条件更新对象 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.springmvc.po.Hexin">
+        update hexin
+        <set>
+            <if test="id != null">
+                id = #{id},
+            </if>
+            <if test="title != null">
+                title = #{title},
+            </if>
+            <if test="content != null">
+                content = #{content},
+            </if>
+            <if test="image != null">
+                image = #{image},
+            </if>
+            <if test="number != null">
+                number = #{number},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!-- 分页查询 -->
+    <select id="selectHexinByPage" resultMap="BaseResultMap">
+        select
+          *
+        from hexin
+        where
+         1=1
+            <if test="hexin.id != null and hexin.id != '' ">
+                and id = #{hexin.id}
+            </if>
+            <if test="hexin.title != null and hexin.title != '' ">
+                and title = #{hexin.title}
+            </if>
+            <if test="hexin.content != null and hexin.content != '' ">
+                and content = #{hexin.content}
+            </if>
+            <if test="hexin.image != null and hexin.image != '' ">
+                and image = #{hexin.image}
+            </if>
+            <if test="hexin.number != null and hexin.number != '' ">
+                and number = #{hexin.number}
+            </if>
+    </select>
+
+    <!-- 查看用户详情 -->
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap">
+        select
+            <include refid="Base_Column_List" />
+        from hexin
+        where id = #{id}
+    </select>
+ 
+</mapper>

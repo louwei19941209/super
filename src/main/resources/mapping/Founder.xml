@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.springmvc.mapper.FounderMapper">
+
+	<resultMap id="BaseResultMap" type="com.springmvc.po.Founder">
+		<id column="id" property="id"   />
+		<result column="name" property="name"  />
+		<result column="biography" property="biography"  />
+		<result column="image" property="image"  />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id, name, biography,image
+	</sql>
+
+
+
+
+
+
+
+	<!-- 按条件新增对象 -->
+    <insert id="insert" parameterType="com.springmvc.po.Founder">
+        insert into founder
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="biography != null">
+                biography,
+            </if>
+            <if test="image != null">
+                image,
+            </if>
+        </trim>
+
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id },
+            </if>
+            <if test="name != null">
+                #{name },
+            </if>
+            <if test="biography != null">
+                #{biography },
+            </if>
+            <if test="image != null">
+                #{image },
+            </if>
+        </trim>
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.springmvc.po.Founder">
+        insert into founder
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="biography != null">
+                biography,
+            </if>
+        </trim>
+
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id },
+            </if>
+            <if test="name != null">
+                #{name },
+            </if>
+            <if test="biography != null">
+                #{biography },
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 根据编号删除 -->
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from founder  where  id  =#{id}
+    </delete>
+
+    <!-- 按条件更新对象 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.springmvc.po.Founder">
+        update founder
+        <set>
+            <if test="id != null">
+                id = #{id},
+            </if>
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="biography != null">
+                biography = #{biography},
+            </if>
+            <if test="image != null">
+                image = #{image},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!-- 分页查询 -->
+    <select id="selectFounderByPage" resultMap="BaseResultMap">
+        select
+          *
+        from founder
+        where
+         1=1
+            <if test="founder.id != null and founder.id != '' ">
+                and id = #{founder.id}
+            </if>
+            <if test="founder.name != null and founder.name != '' ">
+                and name like '%' #{founder.name} '%'
+            </if>
+            <if test="founder.biography != null and founder.biography != '' ">
+                and biography = #{founder.biography}
+            </if>
+    </select>
+
+    <!-- 查看用户详情 -->
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap">
+        select
+            <include refid="Base_Column_List" />
+        from founder
+        where id = #{id}
+    </select>
+
+</mapper>

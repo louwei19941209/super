@@ -1,0 +1,99 @@
+/**{*/
+    /*margin:0 auto;*/
+/*}*/
+/*html,body{*/
+    /*width:100%;*/
+    /*height:100%;*/
+    /*margin:0;*/
+    /*padding:0;*/
+    /*overflow: hidden;*/
+/*}*/
+.shuzhuang{
+    height:330px;
+    width:570px;
+    padding-top: 15px;
+    margin-top:-10px;
+}
+.circle{
+    height: 304px;
+    width: 570px;
+    padding-top: 8px;
+}
+.pingtai{
+    width: 1920px;
+    height: 1080px;
+    margin: 0 auto;
+    background:url(../images/beijing.png) repeat;
+    position: relative;
+}
+.zhuye{
+    position: relative;
+}
+.biaot{
+	width: 1100px;
+    height:81px;
+    background: url(../images/biaoti.png) no-repeat;
+    background-size: contain;
+    padding-top: 38px;
+    margin:0 auto;
+}
+.bianjiao1{
+    width: 570px;
+    height:330px;
+    background: url(../images/bianjiao-1.png) no-repeat;
+    background-size: contain;
+    margin-left: 20px;
+    margin-top:-20px;
+}
+.bianjiao2{
+    width: 570px;
+    height:304px;
+    background: url(../images/bianjiao-2.png) no-repeat;
+    background-size: contain;
+    margin-left: 20px;
+    margin-top: 5px;
+}
+.bianjiao3{
+    width: 570px;
+    height:297px;
+    background: url(../images/bianjiao-3.png) no-repeat;
+    background-size: contain;
+    margin-left: 20px;
+    margin-top: 5px;
+}
+.bianjiao4{
+    width: 560px;
+    height:330px;
+    background: url(../images/bianjiao-4.png) no-repeat;
+    background-size: contain;
+    position: absolute;
+    top: -2px;
+    right: 20px;
+}
+.bianjiao5{
+    width: 560px;
+    height: 304px;
+    background: url(../images/bianjiao-5.png) no-repeat;
+    background-size: contain;
+    position: absolute;
+    top: 338px;
+    right: 20px;
+}
+.bianjiao6{
+    width: 560px;
+    height: 311px;
+    background: url(../images/bianjiao-6.png) no-repeat;
+    background-size: contain;
+    position: absolute;
+    top:765px;
+    right: 20px;
+}
+.bianjiao7{
+    width: 700px;
+    height: 910px;
+    background: url(../images/bianjiao-7.png) no-repeat;
+    background-size: contain;
+    position: absolute;
+    top: 138px;
+    left: 618px;
+}

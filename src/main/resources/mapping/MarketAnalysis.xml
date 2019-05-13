@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.springmvc.mapper.MarketAnalysisMapper">
+
+	<resultMap id="BaseResultMap" type="com.springmvc.po.MarketAnalysis">
+		<id column="id" property="id"   />
+		<result column="content" property="content"  />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id, content
+	</sql>
+
+
+
+
+
+
+ 
+	<!-- 按条件新增对象 -->
+    <insert id="insert" parameterType="com.springmvc.po.MarketAnalysis">
+        insert into market_analysis
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="content != null">
+                content,
+            </if>
+        </trim>
+
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id },
+            </if>
+            <if test="content != null">
+                #{content },
+            </if>
+        </trim>
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.springmvc.po.MarketAnalysis">
+        insert into market_analysis
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="content != null">
+                content,
+            </if>
+        </trim>
+
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id },
+            </if>
+            <if test="content != null">
+                #{content },
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 根据编号删除 -->
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from market_analysis  where  id  =#{id}
+    </delete>
+
+    <!-- 按条件更新对象 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.springmvc.po.MarketAnalysis">
+        update market_analysis
+        <set>
+            <if test="id != null">
+                id = #{id},
+            </if>
+            <if test="content != null">
+                content = #{content},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!-- 分页查询 -->
+    <select id="selectMarketAnalysisByPage" resultMap="BaseResultMap">
+        select
+          *
+        from market_analysis
+        where
+         1=1
+            <if test="marketAnalysis.id != null and marketAnalysis.id != '' ">
+                and id = #{marketAnalysis.id}
+            </if>
+            <if test="marketAnalysis.content != null and marketAnalysis.content != '' ">
+                and content = #{marketAnalysis.content}
+            </if>
+    </select>
+
+    <!-- 查看用户详情 -->
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap">
+        select
+            <include refid="Base_Column_List" />
+        from market_analysis
+        where id = #{id}
+    </select>
+ 
+</mapper>

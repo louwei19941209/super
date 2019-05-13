@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.springmvc.mapper.EnterpriseHonorMapper">
+
+	<resultMap id="BaseResultMap" type="com.springmvc.po.EnterpriseHonor">
+		<id column="id" property="id"   />
+		<result column="content" property="content"  />
+		<result column="image" property="image"  />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id, content, image
+	</sql>
+
+
+
+
+
+
+ 
+	<!-- 按条件新增对象 -->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true" keyColumn="id" parameterType="com.springmvc.po.EnterpriseHonor">
+        insert into enterprise_honor
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="content != null">
+                content,
+            </if>
+            <if test="image != null">
+                image,
+            </if>
+        </trim>
+
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id },
+            </if>
+            <if test="content != null">
+                #{content },
+            </if>
+            <if test="image != null">
+                #{image },
+            </if>
+        </trim>
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.springmvc.po.EnterpriseHonor">
+        insert into enterprise_honor
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="content != null">
+                content,
+            </if>
+            <if test="image != null">
+                image,
+            </if>
+        </trim>
+
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id },
+            </if>
+            <if test="content != null">
+                #{content },
+            </if>
+            <if test="image != null">
+                #{image },
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 根据编号删除 -->
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from enterprise_honor  where  id  =#{id}
+    </delete>
+
+    <!-- 按条件更新对象 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.springmvc.po.EnterpriseHonor">
+        update enterprise_honor
+        <set>
+            <if test="id != null">
+                id = #{id},
+            </if>
+            <if test="content != null">
+                content = #{content},
+            </if>
+            <if test="image != null">
+                image = #{image},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!-- 分页查询 -->
+    <select id="selectEnterpriseHonorByPage" resultMap="BaseResultMap">
+        select
+          *
+        from enterprise_honor
+        where
+         1=1
+            <if test="enterpriseHonor.id != null and enterpriseHonor.id != '' ">
+                and id = #{enterpriseHonor.id}
+            </if>
+            <if test="enterpriseHonor.content != null and enterpriseHonor.content != '' ">
+                and content = #{enterpriseHonor.content}
+            </if>
+            <if test="enterpriseHonor.image != null and enterpriseHonor.image != '' ">
+                and image = #{enterpriseHonor.image}
+            </if>
+    </select>
+
+    <!-- 查看用户详情 -->
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap">
+        select
+            <include refid="Base_Column_List" />
+        from enterprise_honor
+        where id = #{id}
+    </select>
+
+    <insert id="insertFile" parameterType="com.springmvc.po.HonorFile">
+        insert into honor_file
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="honorId != null">
+                honor_id,
+            </if>
+            <if test="newName != null">
+                new_name,
+            </if>
+            <if test="oldName != null">
+                old_name,
+            </if>
+            <if test="ext != null">
+                ext,
+            </if>
+            <if test="path != null">
+                path,
+            </if>
+            <if test="size != null">
+                size,
+            </if>
+        </trim>
+
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="honorId != null">
+                #{honorId},
+            </if>
+            <if test="newName != null">
+                #{newName},
+            </if>
+            <if test="oldName != null">
+                #{oldName},
+            </if>
+            <if test="ext != null">
+                #{ext},
+            </if>
+            <if test="path != null">
+                #{path},
+            </if>
+            <if test="size != null">
+                #{size},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="selectFiles" resultType="java.util.Map">
+        select * from honor_file where honor_id = #{honorId}
+    </select>
+
+    <delete id="deleteFile">
+        delete from honor_file  where  honor_id  =#{id}
+    </delete>
+
+
+
+
+</mapper>

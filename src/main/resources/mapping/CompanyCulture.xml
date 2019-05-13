@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.springmvc.mapper.CompanyCultureMapper">
+
+	<resultMap id="BaseResultMap" type="com.springmvc.po.CompanyCulture">
+		<id column="id" property="id"   />
+		<result column="titile" property="titile"  />
+		<result column="content" property="content"  />
+		<result column="image" property="image"  />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id, titile, content,image
+	</sql>
+
+
+
+
+
+
+ 
+	<!-- 按条件新增对象 -->
+    <insert id="insert" parameterType="com.springmvc.po.CompanyCulture">
+        insert into company_culture
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="titile != null">
+                titile,
+            </if>
+            <if test="content != null">
+                content,
+            </if>
+            <if test="image != null">
+                image,
+            </if>
+        </trim>
+
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id },
+            </if>
+            <if test="titile != null">
+                #{titile },
+            </if>
+            <if test="content != null">
+                #{content },
+            </if>
+            <if test="image != null">
+                #{image },
+            </if>
+        </trim>
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.springmvc.po.CompanyCulture">
+        insert into company_culture
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="titile != null">
+                titile,
+            </if>
+            <if test="content != null">
+                content,
+            </if>
+        </trim>
+
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id },
+            </if>
+            <if test="titile != null">
+                #{titile },
+            </if>
+            <if test="content != null">
+                #{content },
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 根据编号删除 -->
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from company_culture  where  id  =#{id}
+    </delete>
+
+    <!-- 按条件更新对象 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.springmvc.po.CompanyCulture">
+        update company_culture
+        <set>
+            <if test="id != null">
+                id = #{id},
+            </if>
+            <if test="titile != null">
+                titile = #{titile},
+            </if>
+            <if test="content != null">
+                content = #{content},
+            </if>
+            <if test="image != null">
+                image = #{image},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!-- 分页查询 -->
+    <select id="selectCompanyCultureByPage" resultMap="BaseResultMap">
+        select
+          *
+        from company_culture
+        where
+         1=1
+            <if test="companyculture.id != null and companyculture.id != '' ">
+                and id = #{companyculture.id}
+            </if>
+            <if test="companyculture.titile != null and companyculture.titile != '' ">
+                and titile like '%' #{companyculture.titile} '%'
+            </if>
+            <if test="companyculture.content != null and companyculture.content != '' ">
+                and content = #{companyculture.content}
+            </if>
+    </select>
+
+    <!-- 查看用户详情 -->
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap">
+        select
+            <include refid="Base_Column_List" />
+        from company_culture
+        where id = #{id}
+    </select>
+ 
+</mapper>

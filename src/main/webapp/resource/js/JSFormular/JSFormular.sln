@@ -1,0 +1,150 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0F4FBD3B-8930-4208-BFBD-26F6242B2F16}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Operand", "Operand", "{6E1A7FC3-8CEF-4F1E-8CB0-8B1AA5905832}"
+	ProjectSection(SolutionItems) = preProject
+		Operand.js = Operand.js
+		OperandBase.js = OperandBase.js
+		OperandBoolean.js = OperandBoolean.js
+		OperandNumber.js = OperandNumber.js
+		OperandString.js = OperandString.js
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Operator", "Operator", "{23FEE902-E2E8-4C7A-AAA1-2567D5E2EBC1}"
+	ProjectSection(SolutionItems) = preProject
+		Operator.js = Operator.js
+		OperatorBase.js = OperatorBase.js
+		OperatorParentheses.js = OperatorParentheses.js
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utils", "Utils", "{AEC35ECD-F6AE-47A6-8B9A-5CA7CAE8B36B}"
+	ProjectSection(SolutionItems) = preProject
+		igame.js = igame.js
+		Property.js = Property.js
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Function", "Function", "{3EE2325E-27D2-473D-B604-87D062D5C986}"
+	ProjectSection(SolutionItems) = preProject
+		Function.js = Function.js
+		FunctionBase.js = FunctionBase.js
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Formula", "Formula", "{FFBA8948-3B99-413C-84DE-0328C60A3154}"
+	ProjectSection(SolutionItems) = preProject
+		Formula.js = Formula.js
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Arithematic", "Arithematic", "{99207E30-1C54-4F16-A3A9-E1ABCEBA1C67}"
+	ProjectSection(SolutionItems) = preProject
+		OperatorAdd.js = OperatorAdd.js
+		OperatorDiv.js = OperatorDiv.js
+		OperatorMod.js = OperatorMod.js
+		OperatorMul.js = OperatorMul.js
+		OperatorShiftLeft.js = OperatorShiftLeft.js
+		OperatorShiftRight.js = OperatorShiftRight.js
+		OperatorSub.js = OperatorSub.js
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Logic", "Logic", "{66761917-A388-4913-93A7-4B1F2F209334}"
+	ProjectSection(SolutionItems) = preProject
+		OperatorAnd.js = OperatorAnd.js
+		OperatorGreater.js = OperatorGreater.js
+		OperatorGreaterEqual.js = OperatorGreaterEqual.js
+		OperatorLess.js = OperatorLess.js
+		OperatorLessEqual.js = OperatorLessEqual.js
+		OperatorOr.js = OperatorOr.js
+		OperatorXor.js = OperatorXor.js
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Bitwise", "Bitwise", "{42811337-33C7-4A49-901C-50FF722C3931}"
+	ProjectSection(SolutionItems) = preProject
+		OperatorBitwiseAnd.js = OperatorBitwiseAnd.js
+		OperatorBitwiseOr.js = OperatorBitwiseOr.js
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Unary", "Unary", "{F61F357B-0B7B-4DF8-B8DA-86D6DF466D36}"
+	ProjectSection(SolutionItems) = preProject
+		UnaryOperator.js = UnaryOperator.js
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Binary", "Binary", "{579B723F-FD30-41DB-A1A8-5FA385DE06A7}"
+	ProjectSection(SolutionItems) = preProject
+		BinaryOperator.js = BinaryOperator.js
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Functions", "Functions", "{60EC2EFD-670D-4263-84FE-33265ACDB6DF}"
+	ProjectSection(SolutionItems) = preProject
+		FunctionAverage.js = FunctionAverage.js
+		FunctionPower.js = FunctionPower.js
+		FunctionSum.js = FunctionSum.js
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Bitwise", "Bitwise", "{D548D284-AC75-4E47-8C51-9489ED6B8A70}"
+	ProjectSection(SolutionItems) = preProject
+		OperatorBitwiseNot.js = OperatorBitwiseNot.js
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Logic", "Logic", "{7ADD35FD-5E37-4CAE-B181-A4611B7ABC0D}"
+	ProjectSection(SolutionItems) = preProject
+		OperatorNot.js = OperatorNot.js
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Arithematic", "Arithematic", "{B96F8CBA-F045-4FA0-9B7C-92CAA61B0C28}"
+	ProjectSection(SolutionItems) = preProject
+		OperatorMinus.js = OperatorMinus.js
+		OperatorPlus.js = OperatorPlus.js
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{7C22A126-ADD1-43E2-9969-6C1A7BA71B39}"
+	ProjectSection(SolutionItems) = preProject
+		FormulaTest.js = FormulaTest.js
+		OperandTest.js = OperandTest.js
+		OperatorTest.js = OperatorTest.js
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Expression", "Expression", "{4E840B2C-7519-4188-B89E-BBC6550B3C44}"
+	ProjectSection(SolutionItems) = preProject
+		Expression.js = Expression.js
+		ExpressionTest.html = ExpressionTest.html
+	EndProjectSection
+EndProject
+Project("{F088123C-0E9E-452A-89E6-6BA2F21D5CAC}") = "Formular Modeling", "Formular Modeling\Formular Modeling.modelproj", "{E5E46E19-CAD9-4FB8-B1B9-2AAC400E792E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E5E46E19-CAD9-4FB8-B1B9-2AAC400E792E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5E46E19-CAD9-4FB8-B1B9-2AAC400E792E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5E46E19-CAD9-4FB8-B1B9-2AAC400E792E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5E46E19-CAD9-4FB8-B1B9-2AAC400E792E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4E840B2C-7519-4188-B89E-BBC6550B3C44} = {0F4FBD3B-8930-4208-BFBD-26F6242B2F16}
+		{AEC35ECD-F6AE-47A6-8B9A-5CA7CAE8B36B} = {0F4FBD3B-8930-4208-BFBD-26F6242B2F16}
+		{23FEE902-E2E8-4C7A-AAA1-2567D5E2EBC1} = {4E840B2C-7519-4188-B89E-BBC6550B3C44}
+		{FFBA8948-3B99-413C-84DE-0328C60A3154} = {4E840B2C-7519-4188-B89E-BBC6550B3C44}
+		{7C22A126-ADD1-43E2-9969-6C1A7BA71B39} = {4E840B2C-7519-4188-B89E-BBC6550B3C44}
+		{6E1A7FC3-8CEF-4F1E-8CB0-8B1AA5905832} = {4E840B2C-7519-4188-B89E-BBC6550B3C44}
+		{3EE2325E-27D2-473D-B604-87D062D5C986} = {23FEE902-E2E8-4C7A-AAA1-2567D5E2EBC1}
+		{579B723F-FD30-41DB-A1A8-5FA385DE06A7} = {23FEE902-E2E8-4C7A-AAA1-2567D5E2EBC1}
+		{F61F357B-0B7B-4DF8-B8DA-86D6DF466D36} = {23FEE902-E2E8-4C7A-AAA1-2567D5E2EBC1}
+		{60EC2EFD-670D-4263-84FE-33265ACDB6DF} = {3EE2325E-27D2-473D-B604-87D062D5C986}
+		{66761917-A388-4913-93A7-4B1F2F209334} = {579B723F-FD30-41DB-A1A8-5FA385DE06A7}
+		{42811337-33C7-4A49-901C-50FF722C3931} = {579B723F-FD30-41DB-A1A8-5FA385DE06A7}
+		{99207E30-1C54-4F16-A3A9-E1ABCEBA1C67} = {579B723F-FD30-41DB-A1A8-5FA385DE06A7}
+		{D548D284-AC75-4E47-8C51-9489ED6B8A70} = {F61F357B-0B7B-4DF8-B8DA-86D6DF466D36}
+		{7ADD35FD-5E37-4CAE-B181-A4611B7ABC0D} = {F61F357B-0B7B-4DF8-B8DA-86D6DF466D36}
+		{B96F8CBA-F045-4FA0-9B7C-92CAA61B0C28} = {F61F357B-0B7B-4DF8-B8DA-86D6DF466D36}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		VisualSVNWorkingCopyRoot = .
+	EndGlobalSection
+EndGlobal

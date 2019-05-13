@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.springmvc.mapper.SyDeptMapper" >
+  <resultMap id="BaseResultMap" type="com.springmvc.po.SyDept" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="dept_sort" property="deptSort" jdbcType="SMALLINT" />
+    <result column="dept_name" property="deptName" jdbcType="VARCHAR" />
+    <result column="dept_phone" property="deptPhone" jdbcType="VARCHAR" />
+    <result column="dept_fax" property="deptFax" jdbcType="VARCHAR" />
+    <result column="dept_address" property="deptAddress" jdbcType="VARCHAR" />
+    <result column="super_id" property="superId" jdbcType="CHAR" />
+    <result column="lead_uid" property="leadUid" jdbcType="CHAR" />
+    <result column="dept_desc" property="deptDesc" jdbcType="VARCHAR" />
+    <result column="company_id" property="companyId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, dept_sort, dept_name, dept_phone, dept_fax, dept_address, super_id, lead_uid, 
+    dept_desc, company_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from sy_dept
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from sy_dept
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.springmvc.po.SyDept" >
+    <selectKey keyProperty="id" resultType="string" order="BEFORE">
+      select replace(uuid(),'-','') from dual
+    </selectKey>
+    insert into sy_dept (id, dept_sort, dept_name, 
+      dept_phone, dept_fax, dept_address, 
+      super_id, lead_uid, dept_desc, 
+      company_id)
+    values (#{id,jdbcType=CHAR}, #{deptSort,jdbcType=SMALLINT}, #{deptName,jdbcType=VARCHAR}, 
+      #{deptPhone,jdbcType=VARCHAR}, #{deptFax,jdbcType=VARCHAR}, #{deptAddress,jdbcType=VARCHAR}, 
+      #{superId,jdbcType=CHAR}, #{leadUid,jdbcType=CHAR}, #{deptDesc,jdbcType=VARCHAR}, 
+      #{companyId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.springmvc.po.SyDept" >
+    insert into sy_dept
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="deptSort != null" >
+        dept_sort,
+      </if>
+      <if test="deptName != null" >
+        dept_name,
+      </if>
+      <if test="deptPhone != null" >
+        dept_phone,
+      </if>
+      <if test="deptFax != null" >
+        dept_fax,
+      </if>
+      <if test="deptAddress != null" >
+        dept_address,
+      </if>
+      <if test="superId != null" >
+        super_id,
+      </if>
+      <if test="leadUid != null" >
+        lead_uid,
+      </if>
+      <if test="deptDesc != null" >
+        dept_desc,
+      </if>
+      <if test="companyId != null" >
+        company_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="deptSort != null" >
+        #{deptSort,jdbcType=SMALLINT},
+      </if>
+      <if test="deptName != null" >
+        #{deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="deptPhone != null" >
+        #{deptPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="deptFax != null" >
+        #{deptFax,jdbcType=VARCHAR},
+      </if>
+      <if test="deptAddress != null" >
+        #{deptAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="superId != null" >
+        #{superId,jdbcType=CHAR},
+      </if>
+      <if test="leadUid != null" >
+        #{leadUid,jdbcType=CHAR},
+      </if>
+      <if test="deptDesc != null" >
+        #{deptDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null" >
+        #{companyId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.springmvc.po.SyDept" >
+    update sy_dept
+    <set >
+      <if test="deptSort != null" >
+        dept_sort = #{deptSort,jdbcType=SMALLINT},
+      </if>
+      <if test="deptName != null" >
+        dept_name = #{deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="deptPhone != null" >
+        dept_phone = #{deptPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="deptFax != null" >
+        dept_fax = #{deptFax,jdbcType=VARCHAR},
+      </if>
+      <if test="deptAddress != null" >
+        dept_address = #{deptAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="superId != null" >
+        super_id = #{superId,jdbcType=CHAR},
+      </if>
+      <if test="leadUid != null" >
+        lead_uid = #{leadUid,jdbcType=CHAR},
+      </if>
+      <if test="deptDesc != null" >
+        dept_desc = #{deptDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null" >
+        company_id = #{companyId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.springmvc.po.SyDept" >
+    update sy_dept
+    set dept_sort = #{deptSort,jdbcType=SMALLINT},
+      dept_name = #{deptName,jdbcType=VARCHAR},
+      dept_phone = #{deptPhone,jdbcType=VARCHAR},
+      dept_fax = #{deptFax,jdbcType=VARCHAR},
+      dept_address = #{deptAddress,jdbcType=VARCHAR},
+      super_id = #{superId,jdbcType=CHAR},
+      lead_uid = #{leadUid,jdbcType=CHAR},
+      dept_desc = #{deptDesc,jdbcType=VARCHAR},
+      company_id = #{companyId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+
+  <select id="selectAll" resultMap="BaseResultMap">
+      SELECT
+        *
+      FROM
+        sy_dept
+  </select>
+
+    <select id="selectAllByPage" resultMap="BaseResultMap">
+      SELECT
+        *
+      FROM
+        sy_dept
+    </select>
+
+</mapper>

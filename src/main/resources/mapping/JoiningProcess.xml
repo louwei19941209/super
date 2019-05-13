@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.springmvc.mapper.JoiningProcessMapper">
+
+	<resultMap id="BaseResultMap" type="com.springmvc.po.JoiningProcess">
+		<id column="id" property="id"   />
+		<result column="image1" property="image1"  />
+		<result column="image2" property="image2"  />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id, image1, image2
+	</sql>
+
+
+
+
+
+
+ 
+	<!-- 按条件新增对象 -->
+    <insert id="insert" parameterType="com.springmvc.po.JoiningProcess">
+        insert into joining_process
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="image1 != null">
+                image1,
+            </if>
+            <if test="image2 != null">
+                image2,
+            </if>
+        </trim>
+
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id },
+            </if>
+            <if test="image1 != null">
+                #{image1 },
+            </if>
+            <if test="image2 != null">
+                #{image2 },
+            </if>
+        </trim>
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.springmvc.po.JoiningProcess">
+        insert into joining_process
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="image1 != null">
+                image1,
+            </if>
+            <if test="image2 != null">
+                image2,
+            </if>
+        </trim>
+
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id },
+            </if>
+            <if test="image1 != null">
+                #{image1 },
+            </if>
+            <if test="image2 != null">
+                #{image2 },
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 根据编号删除 -->
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from joining_process  where  id  =#{id}
+    </delete>
+
+    <!-- 按条件更新对象 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.springmvc.po.JoiningProcess">
+        update joining_process
+        <set>
+            <if test="id != null">
+                id = #{id},
+            </if>
+            <if test="image1 != null">
+                image1 = #{image1},
+            </if>
+            <if test="image2 != null">
+                image2 = #{image2},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!-- 分页查询 -->
+    <select id="selectJoiningProcessByPage" resultMap="BaseResultMap">
+        select
+          *
+        from joining_process
+        where
+         1=1
+            <if test="joiningProcess.id != null and joiningProcess.id != '' ">
+                and id = #{joiningProcess.id}
+            </if>
+            <if test="joiningProcess.image1 != null and joiningProcess.image1 != '' ">
+                and image1 = #{joiningProcess.image1}
+            </if>
+            <if test="joiningProcess.image2 != null and joiningProcess.image2 != '' ">
+                and image2 = #{joiningProcess.image2}
+            </if>
+    </select>
+
+    <!-- 查看用户详情 -->
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap">
+        select
+            <include refid="Base_Column_List" />
+        from joining_process
+        where id = #{id}
+    </select>
+ 
+</mapper>

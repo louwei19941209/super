@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.springmvc.mapper.SyMenuMyMapper">
+    <resultMap id="BaseResultMap" type="com.springmvc.po.SyMenuMy">
+        <id column="id" property="id" jdbcType="CHAR"/>
+        <result column="_user_id" property="userId" jdbcType="CHAR"/>
+        <result column="_menu_id" property="menuId" jdbcType="CHAR"/>
+        <result column="_sort" property="sort" jdbcType="SMALLINT"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, _user_id, _menu_id, _sort
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from sy_menu_my
+        where id = #{id,jdbcType=CHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sy_menu_my
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+    <insert id="insert" parameterType="com.springmvc.po.SyMenuMy">
+    insert into sy_menu_my (id, _user_id, _menu_id, _sort
+      )
+    values (#{id,jdbcType=CHAR}, #{userId,jdbcType=CHAR}, #{menuId,jdbcType=CHAR}, #{sort,jdbcType=SMALLINT}
+      )
+  </insert>
+    <insert id="insertSelective" parameterType="com.springmvc.po.SyMenuMy">
+        insert into sy_menu_my
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="userId != null">
+                _user_id,
+            </if>
+            <if test="menuId != null">
+                _menu_id,
+            </if>
+            <if test="sort != null">
+                _sort,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=CHAR},
+            </if>
+            <if test="userId != null">
+                #{userId,jdbcType=CHAR},
+            </if>
+            <if test="menuId != null">
+                #{menuId,jdbcType=CHAR},
+            </if>
+            <if test="sort != null">
+                #{sort,jdbcType=SMALLINT},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.springmvc.po.SyMenuMy">
+        update sy_menu_my
+        <set>
+            <if test="userId != null">
+                _user_id = #{userId,jdbcType=CHAR},
+            </if>
+            <if test="menuId != null">
+                _menu_id = #{menuId,jdbcType=CHAR},
+            </if>
+            <if test="sort != null">
+                _sort = #{sort,jdbcType=SMALLINT},
+            </if>
+        </set>
+        where id = #{id,jdbcType=CHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.springmvc.po.SyMenuMy">
+    update sy_menu_my
+    set _user_id = #{userId,jdbcType=CHAR},
+      _menu_id = #{menuId,jdbcType=CHAR},
+      _sort = #{sort,jdbcType=SMALLINT}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+</mapper>

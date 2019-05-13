@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.springmvc.mapper.AfterSaleMapper">
+
+	<resultMap id="BaseResultMap" type="com.springmvc.po.AfterSale">
+		<id column="id" property="id"   />
+		<result column="titile" property="titile"  />
+		<result column="content" property="content"  />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id, titile, content
+	</sql>
+
+
+
+
+
+
+ 
+	<!-- 按条件新增对象 -->
+    <insert id="insert" parameterType="com.springmvc.po.AfterSale">
+        insert into after_sale
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="titile != null">
+                titile,
+            </if>
+            <if test="content != null">
+                content,
+            </if>
+        </trim>
+
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id },
+            </if>
+            <if test="titile != null">
+                #{titile },
+            </if>
+            <if test="content != null">
+                #{content },
+            </if>
+        </trim>
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.springmvc.po.AfterSale">
+        insert into after_sale
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="titile != null">
+                titile,
+            </if>
+            <if test="content != null">
+                content,
+            </if>
+        </trim>
+
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id },
+            </if>
+            <if test="titile != null">
+                #{titile },
+            </if>
+            <if test="content != null">
+                #{content },
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 根据编号删除 -->
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from after_sale  where  id  =#{id}
+    </delete>
+
+    <!-- 按条件更新对象 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.springmvc.po.AfterSale">
+        update after_sale
+        <set>
+            <if test="id != null">
+                id = #{id},
+            </if>
+            <if test="titile != null">
+                titile = #{titile},
+            </if>
+            <if test="content != null">
+                content = #{content},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!-- 分页查询 -->
+    <select id="selectAfterSaleByPage" resultMap="BaseResultMap">
+        select
+          *
+        from after_sale
+        where
+         1=1
+            <if test="afterSale.id != null and afterSale.id != '' ">
+                and id = #{afterSale.id}
+            </if>
+            <if test="afterSale.titile != null and afterSale.titile != '' ">
+                and titile = #{afterSale.titile}
+            </if>
+            <if test="afterSale.content != null and afterSale.content != '' ">
+                and content = #{afterSale.content}
+            </if>
+    </select>
+
+    <!-- 查看用户详情 -->
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap">
+        select
+            <include refid="Base_Column_List" />
+        from after_sale
+        where id = #{id}
+    </select>
+ 
+</mapper>

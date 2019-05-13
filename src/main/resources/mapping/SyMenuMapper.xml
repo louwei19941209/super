@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.springmvc.mapper.SyMenuMapper" >
+    <resultMap id="BaseResultMap" type="com.springmvc.po.SyMenu" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="menu_super_id" property="menuSuperId" jdbcType="CHAR" />
+    <result column="menu_status" property="menuStatus" jdbcType="TINYINT" />
+    <result column="menu_sort" property="menuSort" jdbcType="SMALLINT" />
+    <result column="menu_name" property="menuName" jdbcType="VARCHAR" />
+    <result column="menu_icon" property="menuIcon" jdbcType="VARCHAR" />
+    <result column="menu_url" property="menuUrl" jdbcType="VARCHAR" />
+    <result column="menu_target" property="menuTarget" jdbcType="VARCHAR" />
+    <result column="menu_rel" property="menuRel" jdbcType="VARCHAR" />
+    <result column="menu_open" property="menuOpen" jdbcType="CHAR" />
+    <result column="menu_external" property="menuExternal" jdbcType="CHAR" />
+    <result column="menu_fresh" property="menuFresh" jdbcType="CHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+    id, menu_super_id, menu_status, menu_sort, menu_name, menu_icon, menu_url, menu_target,
+    menu_rel, menu_open, menu_external, menu_fresh
+    </sql>
+
+    <sql id="sql" >
+    s.id,
+    s.menu_super_id as menuSuperId,
+    s.menu_status as menuStatus,
+    s.menu_sort as menuSort,
+    s.menu_name as menuName,
+    s.menu_icon as menuIcon,
+    s.menu_url as menuUrl,
+    s.menu_target as menuTarget,
+    s.menu_rel as menuRel,
+    s.menu_open as menuOpen,
+    s.menu_external as menuExternal,
+    s.menu_fresh as menuFresh
+    </sql>
+
+
+    <select id="selectByPrimaryKey" resultType="com.springmvc.po.SyMenu" parameterType="java.lang.String" >
+        select
+        <include refid="Base_Column_List" />
+        from sy_menu
+        where id = #{id,jdbcType=CHAR}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+        delete from sy_menu
+        where id = #{id,jdbcType=CHAR}
+    </delete>
+
+    <insert id="insert" parameterType="com.springmvc.po.SyMenu" >
+        <selectKey keyProperty="id" resultType="string" order="BEFORE">
+            select replace(uuid(),'-','') from dual
+        </selectKey>
+        insert into sy_menu (id, menu_super_id, menu_status,
+          menu_sort, menu_name, menu_icon,
+          menu_url, menu_target, menu_rel,
+          menu_open, menu_external, menu_fresh
+          )
+        values (#{id,jdbcType=CHAR}, #{menuSuperId,jdbcType=CHAR}, #{menuStatus,jdbcType=TINYINT},
+          #{menuSort,jdbcType=SMALLINT}, #{menuName,jdbcType=VARCHAR}, #{menuIcon,jdbcType=VARCHAR},
+          #{menuUrl,jdbcType=VARCHAR}, #{menuTarget,jdbcType=VARCHAR}, #{menuRel,jdbcType=VARCHAR},
+          #{menuOpen,jdbcType=CHAR}, #{menuExternal,jdbcType=CHAR}, #{menuFresh,jdbcType=CHAR}
+          )
+    </insert>
+    <insert id="insertSelective" parameterType="com.springmvc.po.SyMenu" >
+        insert into sy_menu
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+          <if test="id != null" >
+            id,
+          </if>
+          <if test="menuSuperId != null" >
+            menu_super_id,
+          </if>
+          <if test="menuStatus != null" >
+            menu_status,
+          </if>
+          <if test="menuSort != null" >
+            menu_sort,
+          </if>
+          <if test="menuName != null" >
+            menu_name,
+          </if>
+          <if test="menuIcon != null" >
+            menu_icon,
+          </if>
+          <if test="menuUrl != null" >
+            menu_url,
+          </if>
+          <if test="menuTarget != null" >
+            menu_target,
+          </if>
+          <if test="menuRel != null" >
+            menu_rel,
+          </if>
+          <if test="menuOpen != null" >
+            menu_open,
+          </if>
+          <if test="menuExternal != null" >
+            menu_external,
+          </if>
+          <if test="menuFresh != null" >
+            menu_fresh,
+          </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+          <if test="id != null" >
+            #{id,jdbcType=CHAR},
+          </if>
+          <if test="menuSuperId != null" >
+            #{menuSuperId,jdbcType=CHAR},
+          </if>
+          <if test="menuStatus != null" >
+            #{menuStatus,jdbcType=TINYINT},
+          </if>
+          <if test="menuSort != null" >
+            #{menuSort,jdbcType=SMALLINT},
+          </if>
+          <if test="menuName != null" >
+            #{menuName,jdbcType=VARCHAR},
+          </if>
+          <if test="menuIcon != null" >
+            #{menuIcon,jdbcType=VARCHAR},
+          </if>
+          <if test="menuUrl != null" >
+            #{menuUrl,jdbcType=VARCHAR},
+          </if>
+          <if test="menuTarget != null" >
+            #{menuTarget,jdbcType=VARCHAR},
+          </if>
+          <if test="menuRel != null" >
+            #{menuRel,jdbcType=VARCHAR},
+          </if>
+          <if test="menuOpen != null" >
+            #{menuOpen,jdbcType=CHAR},
+          </if>
+          <if test="menuExternal != null" >
+            #{menuExternal,jdbcType=CHAR},
+          </if>
+          <if test="menuFresh != null" >
+            #{menuFresh,jdbcType=CHAR},
+          </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.springmvc.po.SyMenu" >
+        update sy_menu
+            <set >
+              <if test="menuSuperId != null" >
+                menu_super_id = #{menuSuperId,jdbcType=CHAR},
+              </if>
+              <if test="menuStatus != null" >
+                menu_status = #{menuStatus,jdbcType=TINYINT},
+              </if>
+              <if test="menuSort != null" >
+                menu_sort = #{menuSort,jdbcType=SMALLINT},
+              </if>
+              <if test="menuName != null" >
+                menu_name = #{menuName,jdbcType=VARCHAR},
+              </if>
+              <if test="menuIcon != null" >
+                menu_icon = #{menuIcon,jdbcType=VARCHAR},
+              </if>
+              <if test="menuUrl != null" >
+                menu_url = #{menuUrl,jdbcType=VARCHAR},
+              </if>
+              <if test="menuTarget != null" >
+                menu_target = #{menuTarget,jdbcType=VARCHAR},
+              </if>
+              <if test="menuRel != null" >
+                menu_rel = #{menuRel,jdbcType=VARCHAR},
+              </if>
+              <if test="menuOpen != null" >
+                menu_open = #{menuOpen,jdbcType=CHAR},
+              </if>
+              <if test="menuExternal != null" >
+                menu_external = #{menuExternal,jdbcType=CHAR},
+              </if>
+              <if test="menuFresh != null" >
+                menu_fresh = #{menuFresh,jdbcType=CHAR},
+              </if>
+            </set>
+        where id = #{id,jdbcType=CHAR}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="com.springmvc.po.SyMenu" >
+        update sy_menu
+        set menu_super_id = #{menuSuperId,jdbcType=CHAR},
+          menu_status = #{menuStatus,jdbcType=TINYINT},
+          menu_sort = #{menuSort,jdbcType=SMALLINT},
+          menu_name = #{menuName,jdbcType=VARCHAR},
+          menu_icon = #{menuIcon,jdbcType=VARCHAR},
+          menu_url = #{menuUrl,jdbcType=VARCHAR},
+          menu_target = #{menuTarget,jdbcType=VARCHAR},
+          menu_rel = #{menuRel,jdbcType=VARCHAR},
+          menu_open = #{menuOpen,jdbcType=CHAR},
+          menu_external = #{menuExternal,jdbcType=CHAR},
+          menu_fresh = #{menuFresh,jdbcType=CHAR}
+        where id = #{id,jdbcType=CHAR}
+    </update>
+
+    <select id="selectMenusTop" resultMap="BaseResultMap">
+        SELECT DISTINCT
+          m.*
+        FROM
+          sy_menu m
+        WHERE
+          1 = 1
+        AND menu_super_id = '0'
+        ORDER BY
+          m.menu_sort ASC
+    </select>
+
+    <select id="selectMenusTopByUserRole" resultMap="BaseResultMap">
+        SELECT DISTINCT
+          m.*
+        FROM
+          sy_menu m,
+          sy_role_menu rm
+        WHERE
+          1 = 1
+        AND rm.menu_id = m.id
+        AND m.menu_super_id = 0
+        AND rm.role_id IN
+        <foreach item="roleIds" collection="list" open="(" separator="," close=")" >
+          #{roleIds}
+        </foreach>
+        ORDER BY
+          m.menu_sort ASC
+    </select>
+
+    <select id="selectUserCustomizeMenu" resultType="java.util.List">
+        SELECT
+          m.*
+        FROM
+          sy_menu m,
+          sy_menu_my my
+        WHERE
+          m.id = my._menu_id
+        AND my._user_id = #{userId}
+        AND m.menu_status = 1
+    </select>
+
+    <select id="selectMyMenus" resultMap="BaseResultMap">
+        SELECT DISTINCT
+          m.*
+        FROM
+          sy_menu m,
+          sy_role_menu rm
+        WHERE
+          m.id =  rm.menu_id
+        AND m.menu_status=1
+        AND rm.role_id IN
+        <foreach item="roleIds" collection="list" open="(" separator="," close=")" >
+          #{roleIds}
+        </foreach>
+        ORDER BY
+          m.menu_sort ASC
+    </select>
+
+
+   <!-- <select id="AllMenus" resultMap="BaseResultMap">
+        SELECT DISTINCT
+        m.*
+        FROM
+        sy_menu m,
+        sy_role_menu rm
+        WHERE
+        m.id =  rm.menu_id
+
+        AND rm.role_id IN
+        <foreach item="roleIds" collection="list" open="(" separator="," close=")" >
+            #{roleIds}
+        </foreach>
+        ORDER BY
+        m.menu_sort ASC
+    </select>-->
+
+    <select id="selectAllMenus" resultMap="BaseResultMap">
+        SELECT DISTINCT
+          m.*
+        FROM
+          sy_menu m
+        ORDER BY
+          m.menu_sort ASC
+    </select>
+
+    <select id="selectDetailsById" resultType="hashmap">
+        SELECT
+        <include refid="sql" />,
+        (
+          SELECT
+              m.menu_name
+          FROM
+              sy_menu m
+          WHERE
+              id = s.menu_super_id
+        ) AS superName
+        FROM
+          sy_menu s
+        WHERE
+        s.id = #{id}
+    </select>
+
+    <select id="selectByCondition" resultMap="BaseResultMap">
+        SELECT
+          <include refid="Base_Column_List"/>
+        FROM
+          sy_menu
+        WHERE
+          1=1
+        <if test="id != null and id != '' ">
+          AND id != #{id}
+        </if>
+        <if test="menuName != null and menuName != '' ">
+          AND menu_name = #{menuName}
+        </if>
+        <if test="menuSuperId != null and menuSuperId != '' ">
+          AND menu_super_id = #{menuSuperId}
+        </if>
+    </select>
+
+    <select id="selectChild" resultMap="BaseResultMap">
+        SELECT
+          <include refid="Base_Column_List"/>
+        FROM
+          sy_menu
+        WHERE
+          1=1
+        AND menu_super_id = #{id}
+    </select>
+
+
+
+
+</mapper>

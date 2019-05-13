@@ -1,0 +1,676 @@
+﻿/*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
+html {
+    font-family: sans-serif;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%
+}
+
+body,div {
+    margin: 0;
+    box-sizing: border-box
+}
+
+article,aside,details,figcaption,figure,footer,header,hgroup,main,menu,nav,section,summary {
+    display: block
+}
+
+audio,canvas,progress,video {
+    display: inline-block;
+    vertical-align: baseline
+}
+
+audio:not([controls]) {
+    display: none;
+    height: 0
+}
+
+[hidden],template {
+    display: none
+}
+
+a {
+    background-color: transparent
+}
+
+a:active,a:hover {
+    outline: 0
+}
+
+abbr[title] {
+    border-bottom: 1px dotted
+}
+
+b,strong {
+    font-weight: bold
+}
+
+dfn {
+    font-style: italic
+}
+
+h1 {
+    font-size: 2em;
+    margin: 0.67em 0
+}
+
+mark {
+    background: #ff0;
+    color: #000
+}
+
+small {
+    font-size: 80%
+}
+
+sub,sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline
+}
+
+sup {
+    top: -0.5em
+}
+
+sub {
+    bottom: -0.25em
+}
+
+img {
+    border: 0
+}
+
+svg:not(:root) {
+    overflow: hidden
+}
+
+figure {
+    margin: 1em 40px
+}
+
+hr {
+    box-sizing: content-box;
+    height: 0
+}
+
+pre {
+    overflow: auto
+}
+
+code,kbd,pre,samp {
+    font-family: monospace, monospace;
+    font-size: 1em
+}
+
+button,input,optgroup,select,textarea {
+    color: inherit;
+    font: inherit;
+    margin: 0
+}
+
+button {
+    overflow: visible
+}
+
+button,select {
+    text-transform: none
+}
+
+button,html input[type="button"],input[type="reset"],input[type="submit"] {
+    -webkit-appearance: button;
+    cursor: pointer
+}
+
+button[disabled],html input[disabled] {
+    cursor: default
+}
+
+button::-moz-focus-inner,input::-moz-focus-inner {
+    border: 0;
+    padding: 0
+}
+
+input {
+    line-height: normal
+}
+
+input[type="checkbox"],input[type="radio"] {
+    box-sizing: border-box;
+    padding: 0
+}
+
+input[type="number"]::-webkit-inner-spin-button,input[type="number"]::-webkit-outer-spin-button {
+    height: auto
+}
+
+input[type="search"] {
+    -webkit-appearance: textfield;
+    box-sizing: content-box
+}
+
+input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit-search-decoration {
+    -webkit-appearance: none
+}
+
+fieldset {
+    border: 1px solid #c0c0c0;
+    margin: 0 2px;
+    padding: 0.35em 0.625em 0.75em
+}
+
+legend {
+    border: 0;
+    padding: 0
+}
+
+textarea {
+    overflow: auto
+}
+
+optgroup {
+    font-weight: bold
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0
+}
+
+td,th {
+    padding: 0
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999
+}
+
+header>div {
+    position: absolute;
+    float: left
+}
+
+header>div>a {
+    padding: 60px 25px;
+    display: block;
+    background: #007854
+}
+
+@media only all and (max-width: 1366px) {
+    header>div>a {
+        padding:20px 15px
+    }
+}
+
+@media only all and (max-width: 768px) {
+    header>div>a {
+        width:60px;
+        padding: 15px 0
+    }
+}
+
+@media only all and (max-width: 768px) {
+    header>div>a>img {
+        width:100%
+    }
+}
+
+header>div>div {
+    width: 154px;
+    height: 130px;
+    background: #fff;
+    position: relative;
+    border: 1px solid #f3f3f3
+}
+
+@media only all and (max-width: 1366px) {
+    header>div>div {
+        width:135px;
+        height: 100px
+    }
+}
+
+@media only all and (max-width: 768px) {
+    header>div>div {
+        width:60px;
+        height: 50px
+    }
+}
+
+header>div>div div {
+    cursor: pointer;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -27.5px;
+    margin-left: -21.5px
+}
+
+@media only all and (max-width: 768px) {
+    header>div>div div {
+        margin-top:-21.5px;
+        margin-left: -18.5px
+    }
+}
+
+header>div>div div span {
+    display: block;
+    width: 37px;
+    height: 2px;
+    background: #333;
+    color: #333;
+    margin-bottom: 10px
+}
+
+@media only all and (max-width: 768px) {
+    header>div>div div span {
+        margin-bottom:7px
+    }
+}
+
+header>div>div div .third {
+    margin-bottom: 0
+}
+
+header>div>div div>img {
+    display: none
+}
+
+header>div>div div p {
+    margin-left: -3px
+}
+
+@media only all and (max-width: 768px) {
+    header>div>div div p {
+        margin-left:0;
+        font-size: 12px
+    }
+}
+
+header nav {
+    position: relative;
+    float: left;
+    top: 0;
+    left: -275px;
+    display: none;
+    background: #fff;
+    height: 100%;
+    width: 300px
+}
+
+header nav>ul {
+    padding: 90px 30px
+}
+
+header nav>ul>li {
+    line-height: 2.5;
+    border-bottom: 1px solid #ccc;
+    position: relative;
+    cursor: pointer
+}
+
+header nav>ul>li>a {
+    color: #000;
+    font-size: 16px
+}
+
+header nav>ul>li ul {
+    width: 100%;
+    display: none
+}
+
+header nav>ul>li ul>a {
+    width: 100%;
+    display: block
+}
+
+header nav>ul>li ul>li {
+    border-bottom: none
+}
+
+header nav>ul>li ul>li a {
+    font-size: 12px
+}
+
+header nav>ul>li:after {
+    content: "";
+    display: block;
+    width: 18px;
+    height: 10px;
+    background: url(../imgs/index/list-icon.png) 50% no-repeat;
+    position: absolute;
+    top: 20px;
+    right: 0
+}
+
+header nav>ul .active ul {
+    display: block
+}
+
+header nav .sreach {
+    width: 80%;
+    margin: 0 auto;
+    position: relative
+}
+
+header nav .sreach input {
+    width: 100%;
+    height: 60px;
+    border: 1px solid #b10502
+}
+
+header nav .sreach a {
+    display: block;
+    position: absolute;
+    right: 20px;
+    top: 20px
+}
+
+header nav .language {
+    padding: 20px 30px
+}
+
+header nav .language>a {
+    font-size: 16px;
+    margin-right: 10px;
+    padding-bottom: 5px
+}
+
+header nav .language .active {
+    color: #00c782;
+    border-bottom: 2px solid #00c782
+}
+
+.header {
+    width: 100%;
+    position: relative;
+    background: #fff
+}
+
+.header>img {
+    position: absolute;
+    top: 0;
+    right: 0
+}
+
+@media only all and (max-width: 414px) {
+    .header>img {
+        display:none
+    }
+}
+
+.header .wrapper {
+    padding: 50px 0
+}
+
+@media only all and (max-width: 414px) {
+    .header .wrapper {
+        padding:10px 50px
+    }
+}
+
+.header .wrapper>span {
+    display: block;
+    width: 30px;
+    height: 2px;
+    background: #333333;
+    margin-bottom: 20px
+}
+
+.header .wrapper>p {
+    margin-bottom: 15px
+}
+
+.header .wrapper>p a {
+    font-size: 14px;
+    color: #000
+}
+
+.header .wrapper>div h4,.header .wrapper>div h5 {
+    display: inline
+}
+
+.header .wrapper>div h4 {
+    font-size: 30px;
+    color: #00c782
+}
+
+@media only all and (max-width: 414px) {
+    .header .wrapper>div h4 {
+        font-size:22px
+    }
+}
+
+.header .wrapper>div h5 {
+    font-size: 20px;
+    color: #333333
+}
+
+@media only all and (max-width: 414px) {
+    .header .wrapper>div h5 {
+        font-size:14px
+    }
+}
+
+footer {
+    background: #3a3a3a;
+    color: #fff;
+    width: 100%
+}
+
+footer .top {
+    border-bottom: 1px solid #4e4e4e
+}
+
+footer .top>ul li {
+    padding: 70px 0;
+    float: left;
+    width: 20%;
+    text-align: center
+}
+
+@media only all and (max-width: 414px) {
+    footer .top>ul li {
+        padding:40px 0
+    }
+}
+
+footer .top>ul li a {
+    color: #fff
+}
+
+footer .top>ul li a:hover {
+    text-decoration: underline
+}
+
+footer .top>ul .logo {
+    padding: 40px 0
+}
+
+@media only all and (max-width: 414px) {
+    footer .top>ul .logo {
+        padding:17px 0
+    }
+}
+
+@media only all and (max-width: 414px) {
+    footer .top>ul .logo img {
+        width:100%
+    }
+}
+
+footer .bottom {
+    padding: 45px 160px;
+    position: relative
+}
+
+@media only all and (max-width: 1024px) {
+    footer .bottom {
+        padding:45px 20px
+    }
+}
+
+footer .bottom .inner-l {
+    float: left
+}
+
+@media only all and (max-width: 414px) {
+    footer .bottom .inner-l {
+        float:none;
+        width: 100%
+    }
+}
+
+footer .bottom .inner-l a {
+    display: block;
+    margin-top: 15px;
+    color: #fff
+}
+
+footer .bottom .inner-c {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%)
+}
+
+@media only all and (max-width: 414px) {
+    footer .bottom .inner-c {
+        position:relative;
+        top: 0;
+        left: 50%;
+        -webkit-transform: translateX(-50%);
+        -moz-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
+        -o-transform: translateX(-50%);
+        transform: translateX(-50%)
+    }
+}
+
+footer .bottom .inner-r {
+    float: right
+}
+
+footer .bottom .inner-r>p {
+    text-align: right
+}
+
+@media only all and (max-width: 414px) {
+    footer .bottom .inner-r>p {
+        text-align:left
+    }
+}
+
+@media only all and (max-width: 414px) {
+    footer .bottom .inner-r {
+        float:none;
+        width: 100%
+    }
+}
+
+.pop-up {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 10000;
+    display: none
+}
+
+.pop-up>img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -71.5px;
+    margin-left: -71.5px
+}
+
+html {
+    font-family: "Microsoft YaHei",sans-serif
+}
+
+a,p,ul,li,dd,dt,dl,span,i,h1,h2,h3,h4,h5,h6,p,div {
+    text-decoration: none;
+    box-sizing: border-box;
+    font-size: 14px;
+    -webkit-margin-before: 0em;
+    -webkit-margin-after: 0em;
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    font-weight: normal
+}
+
+*,*:after,*:before {
+    box-sizing: border-box
+}
+
+.clearfix:before,.clearfix:after {
+    display: table;
+    content: ''
+}
+
+.clearfix:after {
+    clear: both
+}
+
+input,textarea {
+    border: 1px solid #D1D1D1;
+    background: #fff;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 10px;
+    box-sizing: border-box;
+    outline: none
+}
+
+html {
+    font-family: 'SimHei','Microsoft YaHei'
+}
+
+html,body {
+    font-family: '微软雅黑'
+}
+
+body,html {
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden
+}
+
+a {
+    color: #000
+}
+
+a:hover {
+    color: #000
+}
+
+.limitWidth-percentWidth {
+    width: 62.5%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+
+@media only all and (max-width: 768px) {
+    .limitWidth-percentWidth {
+        width:90.5%
+    }
+}
+
+.txtWithBg>img {
+    width: 100%
+}

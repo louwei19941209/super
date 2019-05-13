@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.springmvc.mapper.SyRoleActionMapper" >
+  <resultMap id="BaseResultMap" type="com.springmvc.po.SyRoleAction" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="role_id" property="roleId" jdbcType="CHAR" />
+    <result column="action_id" property="actionId" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, role_id, action_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from sy_role_action
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from sy_role_action
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.springmvc.po.SyRoleAction" >
+    <selectKey keyProperty="id" resultType="string" order="BEFORE">
+      select replace(uuid(),'-','') from dual
+    </selectKey>
+    insert into sy_role_action (id, role_id, action_id)
+    values (#{id,jdbcType=CHAR}, #{roleId,jdbcType=CHAR}, #{actionId,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.springmvc.po.SyRoleAction" >
+    insert into sy_role_action
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="roleId != null" >
+        role_id,
+      </if>
+      <if test="actionId != null" >
+        action_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="roleId != null" >
+        #{roleId,jdbcType=CHAR},
+      </if>
+      <if test="actionId != null" >
+        #{actionId,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.springmvc.po.SyRoleAction" >
+    update sy_role_action
+    <set >
+      <if test="roleId != null" >
+        role_id = #{roleId,jdbcType=CHAR},
+      </if>
+      <if test="actionId != null" >
+        action_id = #{actionId,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.springmvc.po.SyRoleAction" >
+    update sy_role_action
+    set role_id = #{roleId,jdbcType=CHAR},
+      action_id = #{actionId,jdbcType=CHAR}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+
+
+  <select id="selectByParameter" resultType="string">
+    SELECT
+      action_id
+    FROM
+      sy_role_action
+    WHERE
+    <if test="roleId != null and roleId !=''">
+      role_id = #{roleId}
+    </if>
+  </select>
+
+  <delete id="deleteByParameter" >
+    DELETE FROM sy_role_action
+    WHERE
+     1=1
+    <if test="roleId != null and roleId != ''">
+      AND role_id = #{roleId}
+    </if>
+    <if test="actionId != null and actionId != '' ">
+      AND action_id = #{actionId}
+    </if>
+  </delete>
+</mapper>

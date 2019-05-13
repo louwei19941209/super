@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.springmvc.mapper.IfbbTeamDetailsMapper">
+
+	<resultMap id="BaseResultMap" type="com.springmvc.po.IfbbTeamDetails">
+		<id column="id" property="id"   />
+		<result column="content" property="content"  />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id, content
+	</sql>
+
+
+
+
+
+
+ 
+	<!-- 按条件新增对象 -->
+    <insert id="insert" parameterType="com.springmvc.po.IfbbTeamDetails">
+        insert into ifbb_team_details
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="content != null">
+                content,
+            </if>
+        </trim>
+
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id },
+            </if>
+            <if test="content != null">
+                #{content },
+            </if>
+        </trim>
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.springmvc.po.IfbbTeamDetails">
+        insert into ifbb_team_details
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="content != null">
+                content,
+            </if>
+        </trim>
+
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id },
+            </if>
+            <if test="content != null">
+                #{content },
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 根据编号删除 -->
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from ifbb_team_details  where  id  =#{id}
+    </delete>
+
+    <!-- 按条件更新对象 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.springmvc.po.IfbbTeamDetails">
+        update ifbb_team_details
+        <set>
+            <if test="id != null">
+                id = #{id},
+            </if>
+            <if test="content != null">
+                content = #{content},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!-- 分页查询 -->
+    <select id="selectIfbbTeamDetailsByPage" resultMap="BaseResultMap">
+        select
+          *
+        from ifbb_team_details
+        where
+         1=1
+            <if test="ifbbTeamDetails.id != null and ifbbTeamDetails.id != '' ">
+                and id = #{ifbbTeamDetails.id}
+            </if>
+            <if test="ifbbTeamDetails.content != null and ifbbTeamDetails.content != '' ">
+                and content = #{ifbbTeamDetails.content}
+            </if>
+    </select>
+
+    <!-- 查看用户详情 -->
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap">
+        select
+            <include refid="Base_Column_List" />
+        from ifbb_team_details
+        where id = #{id}
+    </select>
+ 
+</mapper>

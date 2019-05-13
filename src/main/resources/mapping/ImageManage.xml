@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.springmvc.mapper.ImageManageMapper">
+
+	<resultMap id="BaseResultMap" type="com.springmvc.po.ImageManage">
+		<id column="id" property="id"   />
+		<result column="type" property="type"  />
+		<result column="url" property="url"  />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id, type, url
+	</sql>
+
+
+
+
+
+
+ 
+	<!-- 按条件新增对象 -->
+    <insert id="insert" parameterType="com.springmvc.po.ImageManage">
+        insert into image_manage
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="type != null">
+                type,
+            </if>
+            <if test="url != null">
+                url,
+            </if>
+        </trim>
+
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id },
+            </if>
+            <if test="type != null">
+                #{type },
+            </if>
+            <if test="url != null">
+                #{url },
+            </if>
+        </trim>
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.springmvc.po.ImageManage">
+        insert into image_manage
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="type != null">
+                type,
+            </if>
+            <if test="url != null">
+                url,
+            </if>
+        </trim>
+
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id },
+            </if>
+            <if test="type != null">
+                #{type },
+            </if>
+            <if test="url != null">
+                #{url },
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 根据编号删除 -->
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from image_manage  where  id  =#{id}
+    </delete>
+
+    <!-- 按条件更新对象 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.springmvc.po.ImageManage">
+        update image_manage
+        <set>
+            <if test="id != null">
+                id = #{id},
+            </if>
+            <if test="type != null">
+                type = #{type},
+            </if>
+            <if test="url != null">
+                url = #{url},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!-- 分页查询 -->
+    <select id="selectImageManageByPage" resultMap="BaseResultMap">
+        select
+          *
+        from image_manage
+        where
+         1=1
+            <if test="imageManage.id != null and imageManage.id != '' ">
+                and id = #{imageManage.id}
+            </if>
+            <if test="imageManage.type != null and imageManage.type != '' ">
+                and type = #{imageManage.type}
+            </if>
+            <if test="imageManage.url != null and imageManage.url != '' ">
+                and url = #{imageManage.url}
+            </if>
+    </select>
+
+    <!-- 查看用户详情 -->
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap">
+        select
+            <include refid="Base_Column_List" />
+        from image_manage
+        where id = #{id}
+    </select>
+ 
+</mapper>

@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.springmvc.mapper.ContactMapper">
+
+	<resultMap id="BaseResultMap" type="com.springmvc.po.Contact">
+		<id column="id" property="id"   />
+		<result column="company" property="company"  />
+		<result column="address" property="address"  />
+		<result column="url" property="url"  />
+		<result column="email" property="email"  />
+		<result column="no_public" property="noPublic"  />
+		<result column="phone" property="phone"  />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id, company, address, url, email, no_public,phone
+	</sql>
+
+
+
+
+
+
+ 
+	<!-- 按条件新增对象 -->
+    <insert id="insert" parameterType="com.springmvc.po.Contact">
+        insert into contact
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="company != null">
+                company,
+            </if>
+            <if test="address != null">
+                address,
+            </if>
+            <if test="url != null">
+                url,
+            </if>
+            <if test="email != null">
+                email,
+            </if>
+            <if test="noPublic != null">
+                no_public,
+            </if>
+            <if test="phone != null">
+                phone,
+            </if>
+        </trim>
+
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id },
+            </if>
+            <if test="company != null">
+                #{company },
+            </if>
+            <if test="address != null">
+                #{address },
+            </if>
+            <if test="url != null">
+                #{url },
+            </if>
+            <if test="email != null">
+                #{email },
+            </if>
+            <if test="noPublic != null">
+                #{noPublic },
+            </if>
+            <if test="phone != null">
+                #{phone },
+            </if>
+        </trim>
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.springmvc.po.Contact">
+        insert into contact
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="company != null">
+                company,
+            </if>
+            <if test="address != null">
+                address,
+            </if>
+            <if test="url != null">
+                url,
+            </if>
+            <if test="email != null">
+                email,
+            </if>
+            <if test="noPublic != null">
+                no_public,
+            </if>
+        </trim>
+
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id },
+            </if>
+            <if test="company != null">
+                #{company },
+            </if>
+            <if test="address != null">
+                #{address },
+            </if>
+            <if test="url != null">
+                #{url },
+            </if>
+            <if test="email != null">
+                #{email },
+            </if>
+            <if test="noPublic != null">
+                #{noPublic },
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 根据编号删除 -->
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from contact  where  id  =#{id}
+    </delete>
+
+    <!-- 按条件更新对象 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.springmvc.po.Contact">
+        update contact
+        <set>
+            <if test="id != null">
+                id = #{id},
+            </if>
+            <if test="company != null">
+                company = #{company},
+            </if>
+            <if test="address != null">
+                address = #{address},
+            </if>
+            <if test="url != null">
+                url = #{url},
+            </if>
+            <if test="email != null">
+                email = #{email},
+            </if>
+            <if test="noPublic != null">
+                no_public = #{noPublic},
+            </if>
+            <if test="phone != null">
+                phone = #{phone},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!-- 分页查询 -->
+    <select id="selectContactByPage" resultMap="BaseResultMap">
+        select
+          *
+        from contact
+        where
+         1=1
+            <if test="contact.id != null and contact.id != '' ">
+                and id = #{contact.id}
+            </if>
+            <if test="contact.company != null and contact.company != '' ">
+                and company like '%' #{contact.company} '%'
+            </if>
+            <if test="contact.address != null and contact.address != '' ">
+                and address = #{contact.address}
+            </if>
+            <if test="contact.url != null and contact.url != '' ">
+                and url = #{contact.url}
+            </if>
+            <if test="contact.email != null and contact.email != '' ">
+                and email = #{contact.email}
+            </if>
+            <if test="contact.noPublic != null and contact.noPublic != '' ">
+                and no_public = #{contact.noPublic}
+            </if>
+    </select>
+
+    <!-- 查看用户详情 -->
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap">
+        select
+            <include refid="Base_Column_List" />
+        from contact
+        where id = #{id}
+    </select>
+ 
+</mapper>

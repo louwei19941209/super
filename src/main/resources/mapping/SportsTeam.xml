@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.springmvc.mapper.SportsTeamMapper">
+
+	<resultMap id="BaseResultMap" type="com.springmvc.po.SportsTeam">
+		<id column="id" property="id"   />
+		<result column="name" property="name"  />
+		<result column="biography" property="biography"  />
+		<result column="image" property="image"  />
+		<result column="dImage" property="dImage"  />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id, name, biography,image,dImage
+	</sql>
+
+
+
+
+
+
+ 
+	<!-- 按条件新增对象 -->
+    <insert id="insert" parameterType="com.springmvc.po.SportsTeam">
+        insert into sports_team
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="biography != null">
+                biography,
+            </if>
+            <if test="image != null">
+                image,
+            </if>
+            <if test="dImage != null">
+                dImage,
+            </if>
+        </trim>
+
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id },
+            </if>
+            <if test="name != null">
+                #{name },
+            </if>
+            <if test="biography != null">
+                #{biography },
+            </if>
+            <if test="image != null">
+                #{image },
+            </if>
+            <if test="dImage != null">
+                #{dImage },
+            </if>
+        </trim>
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.springmvc.po.SportsTeam">
+        insert into sports_team
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="biography != null">
+                biography,
+            </if>
+        </trim>
+
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id },
+            </if>
+            <if test="name != null">
+                #{name },
+            </if>
+            <if test="biography != null">
+                #{biography },
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 根据编号删除 -->
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from sports_team  where  id  =#{id}
+    </delete>
+
+    <!-- 按条件更新对象 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.springmvc.po.SportsTeam">
+        update sports_team
+        <set>
+            <if test="id != null">
+                id = #{id},
+            </if>
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="biography != null">
+                biography = #{biography},
+            </if>
+            <if test="image != null">
+                image = #{image},
+            </if>
+            <if test="dImage != null">
+                dImage = #{dImage},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!-- 分页查询 -->
+    <select id="selectSportsTeamByPage" resultMap="BaseResultMap">
+        select
+          *
+        from sports_team
+        where
+         1=1
+            <if test="sportsTeam.id != null and sportsTeam.id != '' ">
+                and id = #{sportsTeam.id}
+            </if>
+            <if test="sportsTeam.name != null and sportsTeam.name != '' ">
+                and name = #{sportsTeam.name}
+            </if>
+            <if test="sportsTeam.biography != null and sportsTeam.biography != '' ">
+                and biography = #{sportsTeam.biography}
+            </if>
+    </select>
+
+    <!-- 查看用户详情 -->
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap">
+        select
+            <include refid="Base_Column_List" />
+        from sports_team
+        where id = #{id}
+    </select>
+ 
+</mapper>

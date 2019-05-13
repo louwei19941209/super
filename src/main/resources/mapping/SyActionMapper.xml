@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.springmvc.mapper.SyActionMapper" >
+  <resultMap id="BaseResultMap" type="com.springmvc.po.SyAction" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="menu_id" property="menuId" jdbcType="CHAR" />
+    <result column="action_sort" property="actionSort" jdbcType="SMALLINT" />
+    <result column="action_name" property="actionName" jdbcType="VARCHAR" />
+    <result column="action_url" property="actionUrl" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, menu_id, action_sort, action_name, action_url
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from sy_action
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from sy_action
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+
+  <insert id="insert" parameterType="com.springmvc.po.SyAction" >
+    <selectKey keyProperty="id" resultType="string" order="BEFORE">
+      select replace(uuid(),'-','') from dual
+    </selectKey>
+    insert into sy_action (id, menu_id, action_sort, 
+      action_name, action_url)
+    values (#{id,jdbcType=CHAR}, #{menuId,jdbcType=CHAR}, #{actionSort,jdbcType=SMALLINT}, 
+      #{actionName,jdbcType=VARCHAR}, #{actionUrl,jdbcType=VARCHAR})
+  </insert>
+
+  <insert id="insertSelective" parameterType="com.springmvc.po.SyAction" >
+    insert into sy_action
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="menuId != null" >
+        menu_id,
+      </if>
+      <if test="actionSort != null" >
+        action_sort,
+      </if>
+      <if test="actionName != null" >
+        action_name,
+      </if>
+      <if test="actionUrl != null" >
+        action_url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="menuId != null" >
+        #{menuId,jdbcType=CHAR},
+      </if>
+      <if test="actionSort != null" >
+        #{actionSort,jdbcType=SMALLINT},
+      </if>
+      <if test="actionName != null" >
+        #{actionName,jdbcType=VARCHAR},
+      </if>
+      <if test="actionUrl != null" >
+        #{actionUrl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.springmvc.po.SyAction" >
+    update sy_action
+    <set >
+      <if test="menuId != null" >
+        menu_id = #{menuId,jdbcType=CHAR},
+      </if>
+      <if test="actionSort != null" >
+        action_sort = #{actionSort,jdbcType=SMALLINT},
+      </if>
+      <if test="actionName != null" >
+        action_name = #{actionName,jdbcType=VARCHAR},
+      </if>
+      <if test="actionUrl != null" >
+        action_url = #{actionUrl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.springmvc.po.SyAction" >
+    update sy_action
+    set menu_id = #{menuId,jdbcType=CHAR},
+      action_sort = #{actionSort,jdbcType=SMALLINT},
+      action_name = #{actionName,jdbcType=VARCHAR},
+      action_url = #{actionUrl,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+
+
+
+    <select id="selectAction" resultMap="BaseResultMap">
+        SELECT
+          *
+        FROM
+          sy_action
+        WHERE
+          1=1
+        <if test="SyAction.id != null and SyAction.id != '' ">
+          AND id = #{SyAction.id}
+        </if>
+        <if test="SyAction.menuId != null and SyAction.menuId !='' ">
+          AND menu_id = #{SyAction.menuId}
+        </if>
+        <if test="SyAction.actionName != null and SyAction.actionName != '' ">
+          AND action_name LIKE '%' #{SyAction.actionName} '%'
+        </if>
+        <if test="SyAction.actionUrl != null and SyAction.actionUrl != '' ">
+          AND action_url LIKE '%' #{SyAction.actionUrl} '%'
+        </if>
+        ORDER BY action_sort
+    </select>
+
+    <select id="selectMyAction" resultMap="BaseResultMap">
+        SELECT DISTINCT
+          s.*
+        FROM
+          sy_action s,
+          sy_role_action ra
+        WHERE
+          1=1
+        AND s.id = ra.action_id
+        AND ra.role_id IN
+        <foreach item="roleIds" collection="list" open="(" separator="," close=")" >
+            #{roleIds}
+        </foreach>
+        ORDER BY
+        s.action_sort
+    </select>
+
+</mapper>

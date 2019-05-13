@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.springmvc.mapper.RecruitmentMapper">
+
+	<resultMap id="BaseResultMap" type="com.springmvc.po.Recruitment">
+		<id column="id" property="id"   />
+		<result column="position" property="position"  />
+		<result column="number" property="number"  />
+		<result column="restricts" property="restricts"  />
+		<result column="qualifications" property="qualifications"  />
+		<result column="treatment" property="treatment"  />
+		<result column="resume" property="resume"  />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id, position, number, restricts, qualifications, treatment,resume
+	</sql>
+
+
+
+
+	<!-- 按条件新增对象 -->
+    <insert id="insert" parameterType="com.springmvc.po.Recruitment">
+        insert into recruitment
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="position != null">
+                position,
+            </if>
+            <if test="number != null">
+                number,
+            </if>
+            <if test="restricts != null">
+                restricts,
+            </if>
+            <if test="qualifications != null">
+                qualifications,
+            </if>
+            <if test="treatment != null">
+                treatment,
+            </if>
+            <if test="resume != null">
+                resume,
+            </if>
+        </trim>
+
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id },
+            </if>
+            <if test="position != null">
+                #{position },
+            </if>
+            <if test="number != null">
+                #{number },
+            </if>
+            <if test="restricts != null">
+                #{restricts },
+            </if>
+            <if test="qualifications != null">
+                #{qualifications },
+            </if>
+            <if test="treatment != null">
+                #{treatment },
+            </if>
+            <if test="resume != null">
+                #{resume },
+            </if>
+        </trim>
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.springmvc.po.Recruitment">
+        insert into recruitment
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="position != null">
+                position,
+            </if>
+            <if test="number != null">
+                number,
+            </if>
+            <if test="restricts != null">
+                restricts,
+            </if>
+            <if test="qualifications != null">
+                qualifications,
+            </if>
+            <if test="treatment != null">
+                treatment,
+            </if>
+        </trim>
+
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id },
+            </if>
+            <if test="position != null">
+                #{position },
+            </if>
+            <if test="number != null">
+                #{number },
+            </if>
+            <if test="restricts != null">
+                #{restricts },
+            </if>
+            <if test="qualifications != null">
+                #{qualifications },
+            </if>
+            <if test="treatment != null">
+                #{treatment },
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 根据编号删除 -->
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from recruitment  where  id  =#{id}
+    </delete>
+
+    <!-- 按条件更新对象 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.springmvc.po.Recruitment">
+        update recruitment
+        <set>
+            <if test="id != null">
+                id = #{id},
+            </if>
+            <if test="position != null">
+                position = #{position},
+            </if>
+            <if test="number != null">
+                number = #{number},
+            </if>
+            <if test="restricts != null">
+                restricts = #{restricts},
+            </if>
+            <if test="qualifications != null">
+                qualifications = #{qualifications},
+            </if>
+            <if test="treatment != null">
+                treatment = #{treatment},
+            </if>
+            <if test="resume != null">
+                resume = #{resume},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!-- 分页查询 -->
+    <select id="selectRecruitmentByPage" resultMap="BaseResultMap">
+        select
+          *
+        from recruitment
+        where
+         1=1
+            <if test="recruitment.id != null and recruitment.id != '' ">
+                and id = #{recruitment.id}
+            </if>
+            <if test="recruitment.position != null and recruitment.position != '' ">
+                and position = #{recruitment.position}
+            </if>
+            <if test="recruitment.number != null and recruitment.number != '' ">
+                and number = #{recruitment.number}
+            </if>
+            <if test="recruitment.restricts != null and recruitment.restricts != '' ">
+                and restricts = #{recruitment.restricts}
+            </if>
+            <if test="recruitment.qualifications != null and recruitment.qualifications != '' ">
+                and qualifications = #{recruitment.qualifications}
+            </if>
+            <if test="recruitment.treatment != null and recruitment.treatment != '' ">
+                and treatment = #{recruitment.treatment}
+            </if>
+    </select>
+
+    <!-- 查看用户详情 -->
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap">
+        select
+            <include refid="Base_Column_List" />
+        from recruitment
+        where id = #{id}
+    </select>
+ 
+</mapper>
